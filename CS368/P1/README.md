@@ -1,6 +1,6 @@
 # Project 1
 
-Managing and handling a book collection database
+Managing and handling a book collection database   
 ======
 Commands to enter:   
 p	: Print the current contents of the database: For each book in the database, print its ID, publication year, and rating        (separated by commas) on a new line.   
