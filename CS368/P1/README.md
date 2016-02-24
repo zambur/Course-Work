@@ -2,8 +2,8 @@
 
 Managing and handling a book collection database   
 
-Compile:
-'g++ bookDB.cpp -o bookDB'
+Compile:   
+`g++ bookDB.cpp -o bookDB`
 
 ======
 Commands to enter:   
