@@ -6,6 +6,26 @@ This assignment consists of 2 programs which use specific software interrupts, r
 
 C program called intdate.c that is composed of two parts. One part is the main program, which does absolutely nothing in an infinite loop. Before entering the infinite loop, the main program will set up what is to happen when an alarm goes off 3 seconds later. When the alarm goes off, this causes a SIGALRM interrupt to signal the program. This interrupt is to be caught by the program, and handled by the second part of the program, an interrupt handler. This handler function is to print out the current time, in the same format as the Unix date program, re-arm the alarm to go off three seconds later, and then return back to the main program. The program only exits after the user types Control-c 5 times.
 
+***Sample Program Run:***
+```
+Date will be printed every 3 seconds.
+Enter ^C 5 times to end the program:
+^C
+Control-c caught. 4 more before program is ended.
+
+current time is Thu Feb 26 15:15:51 2015
+^C
+Control-c caught. 3 more before program is ended.
+^C
+Control-c caught. 2 more before program is ended.
+^C
+Control-c caught. 1 more before program is ended.
+
+current time is Thu Feb 26 15:15:54 2015
+^C
+Final Control-c caught. Exiting.
+```
+
 ### Program 2 : Some Division
 
 Prompts user for two integer values and then calculate the quotient and remainder of doing the integer division operation: int1 / int2, printing these results, and keeping track of how many division operations were successfully completed. A Control-c will cause this program to stop running.
