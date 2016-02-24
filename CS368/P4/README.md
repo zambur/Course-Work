@@ -1,5 +1,6 @@
 #Project 4
 
+Program overloading arithmetic, relational, assignment, and I/O operators.
 
 ***Assignment operator (=)***   
 * `Date& operator=(const Date& dt)`   
