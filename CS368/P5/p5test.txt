@@ -1,0 +1,14 @@
+The attitude that programmers should not have to pay for features
+that they do not use permeates the [C++] language.  Another example
+will further illustrate this influence.  Imagine that an integer
+variable holding a negative number is right-shifted by one location.
+What bit value should be moved into the topmost position?  If we
+look at the machine level, architectural designers are divided on
+this issue.  On some machines, a right shift will move a zero into
+the most significant bit position, while on other machines the sign
+bit (which, in the case of a negative number, will be 1) is extended.
+Either case can be simulated by the other, using software, by means
+of a combination of tests and masks.
+
+-- p. 4, "C++ for Java Programmers", Timothy Budd (Addison-Wesley, 1999)
+
