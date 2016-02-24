@@ -12,11 +12,11 @@ g++ Book.o SortedList.o bookDB.o -o runDB
 =====
 Commands to Enter:   
 a ID title year rating :   
-    Add a book to the database. Note: The title must not be in quotes and must end with a period.   
+* Add a book to the database. Note: The title must not be in quotes and must end with a period.   
 d ID :   
-    Delete a book from the database   
+* Delete a book from the database   
 u ID year rating :   
-    Update the year and rating for a book with the given ID   
+* Update the year and rating for a book with the given ID   
 c :   
     Calculate the average rating of all the books   
 f year :
