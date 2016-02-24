@@ -2,14 +2,17 @@
 
 Program overloading arithmetic, relational, assignment, and I/O operators.
 
-***Assignment operator (=)***   
-`Date& operator=(const Date& dt)`   
+***Assignment operator (=)*** 
+
+* `Date& operator=(const Date& dt)`   
 Sets the current Date+ object equal to the passed in parameter and returns the current object.   
+
 ***Arithmetic operators (+, -)***
-`Date operator+ (const Date&, const int n) const`   
+
+* `Date operator+ (const Date&, const int n) const`   
 [Non-member function]   
 Returns a new Date object that represents the date that is n days after the current Date object. If a negative number is passed in causing a date before 1/1/1900, print an appropriate error message and set the date to 1/1/1900.   
-`Date operator- (const Date&, const int n) const`   
+* `Date operator- (const Date&, const int n) const`   
 [Non-member function]   
 Returns a new Date object that represents the date that was n days before the current Date object. If a number is passed that results in a date before 1/1/1900, print an appropriate error message and set the date to 1/1/1900.   
 
