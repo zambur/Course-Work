@@ -19,5 +19,5 @@ Commands to Enter:
     Calculate and print the average rating of all the books in the database.   
 * f :   
     year	Find and print all books in the database that were published in the given year.   
-* q	: 
+* q	:   
     Quit the application.   
