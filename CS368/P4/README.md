@@ -2,7 +2,7 @@
 
 Program overloading arithmetic, relational, assignment, and I/O operators.
 
-***Assignment operator (=)***   
+\t***Assignment operator (=)***   
 * `Date& operator=(const Date& dt)`   
 Sets the current Date+ object equal to the passed in parameter and returns the current object.   
 ***Arithmetic operators (+, -)***
