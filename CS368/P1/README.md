@@ -2,9 +2,8 @@
 
 Managing and handling a book collection database   
 
-Compile:   
+#####Compile:   
 `g++ bookDB.cpp -o bookDB`
-
 ======
 Commands to enter:   
 p	: Print the current contents of the database: For each book in the database, print its ID, publication year, and rating        (separated by commas) on a new line.   
