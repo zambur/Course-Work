@@ -4,9 +4,9 @@ In this project, I created a new scheduler into xv6. It is called a simple prior
 
 ###Files
 
-***kernel*** - kernel and booting
-***user*** - user level programs
-***include*** - shared header files for both kernel and user
-***tools*** - tools to run on the host machine
-***README*** - project description
-***Makefile*** - build instructions for GNU make
+***kernel*** - kernel and booting   
+***user*** - user level programs   
+***include*** - shared header files for both kernel and user   
+***tools*** - tools to run on the host machine   
+***README*** - project description   
+***Makefile*** - build instructions for GNU make   
