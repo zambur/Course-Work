@@ -1,4 +1,4 @@
-# Program 1
+# Linux Program 1
 
 A sorting program that takes in one or two inputs. If just one input is given, the input file file should be sorted and the sorted output printed to the screen; it is assumed that the file is a text file (full of ASCII characters) and, when no other arguments are given, the sorting should be over the first word in each line.
 
