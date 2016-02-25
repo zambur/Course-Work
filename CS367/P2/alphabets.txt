@@ -1,0 +1,217 @@
+XYACBDEFGHIJKLMNOPQRSTUVWZ1
+ X   X
+ X   X
+  X X
+   X
+  X X
+ X   X
+ X   X
+#########
+ X   X
+ X   X
+ X   X
+  X X
+   X
+   X
+   X
+#########
+  XXX 
+ X   X
+ X   X
+ XXXXX
+ X   X
+ X   X
+ X   X
+######### 
+  XXX
+ X   X
+ X
+ X
+ X
+ X   X
+  XXX
+#########
+ XXXX
+ X   X
+ X   X
+ XXXX
+ X   X
+ X   X
+ XXXX
+#########
+ XXXX
+ X   X
+ X   X
+ X   X
+ X   X
+ X   X
+ XXXX
+#########
+ XXXXX
+ X
+ X
+ XXXX
+ X
+ X
+ XXXXX
+#########
+ XXXXX
+ X
+ X
+ XXXX
+ X
+ X
+ X
+#########
+  XXX 
+ X   X
+ X
+ X
+ X XXX
+ X   X
+  XXX
+#########
+ X   X
+ X   X
+ X   X
+ XXXXX
+ X   X
+ X   X
+ X   X
+#########
+ XXXXX
+   X
+   X
+   X
+   X
+   X
+ XXXXX
+#########
+     X
+     X
+     X
+     X
+ X   X
+ X   X
+  XXX
+#########
+ X   X
+ X  X  
+ X X
+ XX
+ X X
+ X  X
+ X   X
+#########
+ X
+ X
+ X
+ X
+ X
+ X
+ XXXXX
+#########
+ X   X
+ XX XX
+ X X X
+ X   X
+ X   X
+ X   X
+ X   X
+#########
+ X   X
+ X   X
+ XX  X
+ X X X
+ X  XX
+ X   X
+ X   X
+#########
+  XXX 
+ X   X
+ X   X
+ X   X
+ X   X
+ X   X
+  XXX
+#########
+ XXXX 
+ X   X
+ X   X
+ X   X
+ XXXX   
+ X   
+ X
+#########
+  XXX 
+ X   X
+ X   X
+ X   X
+ X X X
+ X  XX
+  XXX
+#########
+ XXXX 
+ X   X
+ X   X
+ X   X
+ XXXX   
+ X   X 
+ X   X
+#########
+  XXX 
+ X   X
+ X   
+  XXX
+     X
+ X   X
+  XXX
+#########
+ XXXXX
+   X
+   X
+   X
+   X
+   X
+   X
+#########   
+ X   X
+ X   X
+ X   X
+ X   X
+ X   X
+ X   X
+  XXX
+#########
+ X   X
+ X   X
+ X   X
+ X   X
+ X   X
+  X X
+   X
+#########
+ X   X
+ X   X
+ X   X
+ X   X
+ X X X
+ XX XX
+ X   X
+#########
+ XXXXX
+     X
+    X
+   X
+  X
+ X
+ XXXXX
+#########
+   X
+  XX
+   X
+   X
+   X
+   X
+   X
+#########
