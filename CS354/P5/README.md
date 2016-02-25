@@ -1,4 +1,4 @@
-# Project 5
+# Assignment 5
 
 Creating and implementing my own memory allocation functions malloc() and free()
 
