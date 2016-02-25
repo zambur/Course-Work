@@ -1,0 +1,18 @@
+1  alloc             :a simple 8 byte allocation
+2  alloc_nospace     :allocation is too big to fit in available space
+3  writeable         :write to a chunk from Mem_Alloc and check the value
+4  align             :first pointer returned is 4-byte aligned
+5  alloc2            :a few allocations in multiples of 4 bytes
+6  alloc2_nospace    :second allocation is too big to fit
+7  free2             :a few allocations in multiples of 4 bytes followed by frees
+8  align2            :a few allocations in multiples of 4 bytes checked for alignment
+9  alloc3            :many odd sized allocations
+10 free3             :many odd sized allocations and interspersed frees
+11 align3            :many odd sized allocations checked for alignment
+12 bestfit           :check for best fit implementation
+13 coalesce1         :check for coalesce free space
+14 coalesce2         :check for coalesce free space
+15 coalesce3         :check for coalesce free space
+16 coalesce4         :check for coalesce free space
+17 coalesce5         :check for coalesce free space (first chunk)
+18 coalesce6         :check for coalesce free space (last chunk)
