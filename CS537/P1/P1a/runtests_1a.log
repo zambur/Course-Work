@@ -1,0 +1,209 @@
+starting build
+
+**********************************************************************
+
+Test build
+build project using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+make: *** No rule to make target `clean'.  Stop.
+Trying to build project using make
+make
+make: *** No targets specified and no makefile found.  Stop.
+Trying to build using gcc
+gcc -O -Wall -o fastsort fastsort.c -I/afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a
+
+
+test build PASSED
+ (build project using make)
+
+starting empty
+
+**********************************************************************
+
+Test empty
+empty input file
+
+**********************************************************************
+Running fastsort
+/tmp/tmpEYWN6M/p/fastsort /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/empty
+Checking output
+
+
+test empty PASSED (10 of 10)
+ (empty input file)
+
+starting one
+
+**********************************************************************
+
+Test one
+a single record
+
+**********************************************************************
+Running fastsort
+/tmp/tmpEYWN6M/p/fastsort /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/one
+Checking output
+
+
+test one PASSED (10 of 10)
+ (a single record)
+
+starting five1
+
+**********************************************************************
+
+Test five1
+five records
+
+**********************************************************************
+Running fastsort
+/tmp/tmpEYWN6M/p/fastsort /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/five1
+Checking output
+
+
+test five1 PASSED (10 of 10)
+ (five records)
+
+starting five2
+
+**********************************************************************
+
+Test five2
+five records
+
+**********************************************************************
+Running fastsort
+/tmp/tmpEYWN6M/p/fastsort -2 /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/five2
+Checking output
+
+
+test five2 PASSED (10 of 10)
+ (five records)
+
+starting misskeys
+
+**********************************************************************
+
+Test misskeys
+missing keys in some lines
+
+**********************************************************************
+Running fastsort
+/tmp/tmpEYWN6M/p/fastsort -5 /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/missing_keys
+Checking output
+
+
+test misskeys PASSED (10 of 10)
+ (missing keys in some lines)
+
+starting arg
+
+**********************************************************************
+
+Test arg
+Bad arguments
+
+**********************************************************************
+/tmp/tmpEYWN6M/p/fastsort
+
+
+test arg PASSED (10 of 10)
+ (Bad arguments)
+
+starting arg2
+
+**********************************************************************
+
+Test arg2
+Bad arguments
+
+**********************************************************************
+/tmp/tmpEYWN6M/p/fastsort a b c d
+
+
+test arg2 PASSED (10 of 10)
+ (Bad arguments)
+
+starting arg3
+
+**********************************************************************
+
+Test arg3
+Invalid key value
+
+**********************************************************************
+/tmp/tmpEYWN6M/p/fastsort -i input/empty
+
+
+test arg3 PASSED (10 of 10)
+ (Invalid key value)
+
+starting badin
+
+**********************************************************************
+
+Test badin
+Bad input file
+
+**********************************************************************
+/tmp/tmpEYWN6M/p/fastsort /invalid/path/nXr3PY
+
+
+test badin PASSED (10 of 10)
+ (Bad input file)
+
+starting toolong
+
+**********************************************************************
+
+Test toolong
+some line has more than 128 characters
+
+**********************************************************************
+/tmp/tmpEYWN6M/p/fastsort /afs/cs.wisc.edu/p/course/cs537-remzi/ta/tests/1a/input/toolong
+
+
+test toolong PASSED (10 of 10)
+ (some line has more than 128 characters)
+
+**********************************************************************
+Summary:
+test build PASSED
+ (build project using make)
+
+test empty PASSED (10 of 10)
+ (empty input file)
+
+test one PASSED (10 of 10)
+ (a single record)
+
+test five1 PASSED (10 of 10)
+ (five records)
+
+test five2 PASSED (10 of 10)
+ (five records)
+
+test misskeys PASSED (10 of 10)
+ (missing keys in some lines)
+
+test arg PASSED (10 of 10)
+ (Bad arguments)
+
+test arg2 PASSED (10 of 10)
+ (Bad arguments)
+
+test arg3 PASSED (10 of 10)
+ (Invalid key value)
+
+test badin PASSED (10 of 10)
+ (Bad input file)
+
+test toolong PASSED (10 of 10)
+ (some line has more than 128 characters)
+
+Passed 11 of 11 tests.
+Overall 11 of 11
+Points 100 of 100
