@@ -7,6 +7,7 @@ This program simulates the process of creating a dot matrix generator.
 ***s filename :***
 
 * save the generated text to a file
+
 ***l filename :***
 
 * load a generated text to the program
