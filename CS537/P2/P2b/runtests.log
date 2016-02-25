@@ -1,0 +1,731 @@
+starting build
+
+**********************************************************************
+
+Test build
+build xv6 using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 421 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/stressfs user/bin/grep user/bin/tester user/bin/kill user/bin/cat user/bin/mkdir user/bin/init user/bin/rm user/bin/echo user/bin/ls user/bin/ln user/bin/usertests user/bin/sh user/bin/wc user/bin/zombie
+
+
+test build PASSED
+ (build xv6 using make)
+
+starting getpinfo
+
+**********************************************************************
+
+Test getpinfo
+call getpinfo() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/getpinfo.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/getpinfo.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 422 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ **** PInfo **** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+Should print 1 then 2
+
+test getpinfo PASSED (10 of 10)
+ (call getpinfo() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/getpinfo.c)
+
+starting setpri
+
+**********************************************************************
+
+Test setpri
+call setpri() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/setpri.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/setpri.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 422 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+Should print 1 then 2$ 
+
+test setpri PASSED (10 of 10)
+ (call setpri() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/setpri.c)
+
+starting processesinuse
+
+**********************************************************************
+
+Test processesinuse
+check number of processes in use by calling getpinfo() 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/processesinuse.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/processesinuse.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 423 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+**** PInfo ****
+pid: 1 hticks: 0 lticks: 1
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 1
+pid: 4 hticks: 0 lticks: 73
+pid: 5 hticks: 0 lticks: 73
+pid: 6 hticks: 0 lticks: 73
+pid: 7 hticks: 0 lticks: 73
+pid: 8 hticks: 0 lticks: 73
+pid: 9 hticks: 0 lticks: 73
+pid: 10 hticks: 0 lticks: 72
+Number of processes in use 10
+Should print 1 then 2
+
+test processesinuse PASSED (20 of 20)
+ (check number of processes in use by calling getpinfo() 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/processesinuse.c)
+
+starting default_priority
+
+**********************************************************************
+
+Test default_priority
+check default priority set for processes by measuring hticks 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/default_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/default_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 424 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ **** PInfo **** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 95
+Should print 1 then 2
+
+test default_priority PASSED (20 of 20)
+ (check default priority set for processes by measuring hticks 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/default_priority.c)
+
+starting check_hticks
+
+**********************************************************************
+
+Test check_hticks
+check if hticks being incremented for high priority process 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/check_hticks.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/check_hticks.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 425 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ **** PInfo Before**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+
+ **** PInfo After**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 465 lticks: 0
+Should print 1 then 2
+
+test check_hticks PASSED (20 of 20)
+ (check if hticks being incremented for high priority process 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/check_hticks.c)
+
+starting change_priority
+
+**********************************************************************
+
+Test change_priority
+check if hticks and lticks being incremented as expected when the priority is changed back and forth 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/change_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/change_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 426 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 465 lticks: 0
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 466 lticks: 0
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 466 lticks: 465
+Should print 1 then 2
+
+test change_priority PASSED (20 of 20)
+ (check if hticks and lticks being incremented as expected when the priority is changed back and forth 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/change_priority.c)
+
+starting run_high_priority
+
+**********************************************************************
+
+Test run_high_priority
+check no low priority processes are running when there is high priority 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/run_high_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/run_high_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 426 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 1
+pid: 4 hticks: 0 lticks: 0
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 1
+pid: 4 hticks: 930 lticks: 0
+Should print 1 then 2zombie!
+
+
+test run_high_priority PASSED (20 of 20)
+ (check no low priority processes are running when there is high priority 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/run_high_priority.c)
+
+starting sleep_high_priority
+
+**********************************************************************
+
+Test sleep_high_priority
+check if low priority processes run when high priority is put to sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/sleep_high_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/sleep_high_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 425 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+pid: 4 hticks: 0 lticks: 100
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 2
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+pid: 4 hticks: 0 lticks: 600
+Should print 1 then 2
+
+test sleep_high_priority PASSED (20 of 20)
+ (check if low priority processes run when high priority is put to sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/sleep_high_priority.c)
+
+starting awake_high_priority
+
+**********************************************************************
+
+Test awake_high_priority
+check if only high priority process run when high priority is awake from sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/awake_high_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/awake_high_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 425 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 1
+pid: 2 hticks: 0 lticks: 1
+pid: 3 hticks: 0 lticks: 0
+pid: 4 hticks: 0 lticks: 200
+pid: 5 hticks: 0 lticks: 0
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 1
+pid: 2 hticks: 0 lticks: 1
+pid: 3 hticks: 931 lticks: 0
+pid: 4 hticks: 0 lticks: 200
+pid: 5 hticks: 0 lticks: 0
+Should print 1 then 2
+
+test awake_high_priority PASSED (20 of 20)
+ (check if only high priority process run when high priority is awake from sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/awake_high_priority.c)
+
+starting multiple_high_priority
+
+**********************************************************************
+
+Test multiple_high_priority
+check if multiple high priority processes run in round robin 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/multiple_high_priority.c
+
+**********************************************************************
+Running xv6 user progam /u/c/s/cs537-1/ta/tests/2b/ctests/multiple_high_priority.c
+Trying to build project using make
+make
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 \
+		-M -MG user/tester.c -MF user/tester.d -MT user/tester.d -MT user/tester.o
+gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
+ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+cp user/bin/tester fs/tester
+./tools/mkfs fs.img fs
+used 29 (bit 1 ninode 26) free 29 total 1024
+stressfs
+init
+forktest
+echo
+sh
+cat
+zombie
+usertests
+kill
+tester
+wc
+ls
+grep
+rm
+ln
+README
+mkdir
+balloc: first 425 blocks have been allocated
+balloc: write bitmap block at sector 28
+rm user/bin/tester
+make qemu-nox CPUS=1
+Ctrl+a h for help
+/u/c/s/cs537-2/ta/tools/qemu -nographic -hdb fs.img xv6.img -smp 1
+Could not open option rom 'sgabios.bin': No such file or directory
+xv6...
+cpu0: starting
+init: starting sh
+$ tester
+tester
+
+ ****PInfo before**** 
+pid: 1 hticks: 0 lticks: 1
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 0 lticks: 0
+pid: 4 hticks: 0 lticks: 0
+pid: 5 hticks: 0 lticks: 0
+
+ ****PInfo after**** 
+pid: 1 hticks: 0 lticks: 1
+pid: 2 hticks: 0 lticks: 0
+pid: 3 hticks: 465 lticks: 0
+pid: 4 hticks: 465 lticks: 0
+pid: 5 hticks: 0 lticks: 0
+Should print 1 then 2
+
+test multiple_high_priority PASSED (20 of 20)
+ (check if multiple high priority processes run in round robin 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/multiple_high_priority.c)
+
+**********************************************************************
+Summary:
+test build PASSED
+ (build xv6 using make)
+
+test getpinfo PASSED (10 of 10)
+ (call getpinfo() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/getpinfo.c)
+
+test setpri PASSED (10 of 10)
+ (call setpri() from a user program 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/setpri.c)
+
+test processesinuse PASSED (20 of 20)
+ (check number of processes in use by calling getpinfo() 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/processesinuse.c)
+
+test default_priority PASSED (20 of 20)
+ (check default priority set for processes by measuring hticks 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/default_priority.c)
+
+test check_hticks PASSED (20 of 20)
+ (check if hticks being incremented for high priority process 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/check_hticks.c)
+
+test change_priority PASSED (20 of 20)
+ (check if hticks and lticks being incremented as expected when the priority is changed back and forth 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/change_priority.c)
+
+test run_high_priority PASSED (20 of 20)
+ (check no low priority processes are running when there is high priority 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/run_high_priority.c)
+
+test sleep_high_priority PASSED (20 of 20)
+ (check if low priority processes run when high priority is put to sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/sleep_high_priority.c)
+
+test awake_high_priority PASSED (20 of 20)
+ (check if only high priority process run when high priority is awake from sleep 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/awake_high_priority.c)
+
+test multiple_high_priority PASSED (20 of 20)
+ (check if multiple high priority processes run in round robin 
+ The corresponding test file is at ~cs537-1/ta/tests/2b/ctests/multiple_high_priority.c)
+
+Passed 11 of 11 tests.
+Overall 11 of 11
+Points 180 of 180
