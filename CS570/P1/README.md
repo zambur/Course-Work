@@ -43,4 +43,4 @@ Describing our design and demonstrating the key tasks our design supports.
 ### High Fidelity Prototype
 
 [Student Center](https://invis.io/VU66VKA3B) Our final prototype of the Student Center.   
-Photoshop documents and screenshots are located in [/Photosho](/Photoshop/)
+Photoshop documents and screenshots are located in [/Photoshop](https://github.com/zambur/Course-Work/tree/master/CS570/P1/Photoshop)
