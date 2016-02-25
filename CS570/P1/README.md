@@ -42,4 +42,5 @@ Describing our design and demonstrating the key tasks our design supports.
 
 ### High Fidelity Prototype
 
-[Student Center](https://invis.io/VU66VKA3B) Our final prototype of the Student Center
+[Student Center](https://invis.io/VU66VKA3B) Our final prototype of the Student Center.   
+Photoshop documents and screenshots are located in `/Photoshop`
