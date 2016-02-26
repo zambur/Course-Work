@@ -1,0 +1,2639 @@
+
+<!--[if lt IE 9]>
+	<html id="ng-app" ng-app="InVision" ng-controller="AppController" inv-key-combos class="lt-ie9 ng-app:InVision" lang="en">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html ng-app="InVision" ng-controller="AppController" inv-key-combos lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title ng-bind="windowTitle">
+		InVision
+	</title>
+
+	<!-- Custom webfonts -->
+	<style>
+	@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 300;
+		src: local('Open Sans Light'), local('OpenSans-Light'), url(assets/fonts/open_sans/OpenSans-light.woff) format('woff');
+	}
+	@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 400;
+		src: local('Open Sans'), local('OpenSans'), url(assets/fonts/open_sans/OpenSans.woff) format('woff');
+	}
+	@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 600;
+		src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(assets/fonts/open_sans/OpenSans-semibold.woff) format('woff');
+	}
+	@font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 700;
+		src: local('Open Sans Bold'), local('OpenSans-Bold'), url(assets/fonts/open_sans/OpenSans-bold.woff) format('woff');
+	}
+	</style>
+	<!-- Interface styles -->
+	<link type="text/css" rel="stylesheet" href="assets/jquery-ui-1.9.2.custom/css/no-theme/jquery-ui-1.9.2.custom.min.css">
+	<link type="text/css" rel="stylesheet" href="assets/apps/share/css/uniform.default.css">
+	<link type="text/css" rel="stylesheet" href="assets/apps/share/css/bootstrap.css">
+	<link type="text/css" rel="stylesheet" href="assets/apps/share/css/intlTelInput.css">
+	<link type="text/css" rel="stylesheet" href="assets/apps/share/css/share-offline.css">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="/assets/html5shim/html5.js"></script>
+	<![endif]-->
+	<!--[if lt IE 8]>
+		<script src="/assets/json2/json2.js"></script>
+	<![endif]-->
+</head>
+<body
+	class="branding-invision"
+	ng-class="bodyClass"
+	ng-style="bodyStyle">
+
+
+	<!--
+		This is the initial loading sequence. We need to be able to display this BEFORE the AngularJS
+		framework loads in order to give the user some sence of activity. But, when the framework kicks
+		in, it will be able to use the bound ng-controller.
+	-->
+	<!-- BEGIN: Loading Sequence. -->
+	<div ng-if="isLoadingOpen" ng-controller="loading.LoadingController" inv-loading-sequence class="m-loading">
+
+		<!-- BEGIN: Loading Indicator. -->
+		
+
+			<div class="loading-backdrop">
+
+				<div class="loading-container">
+
+					<div class="status-container">
+
+						<div class="status"></div>
+						<div class="logo"></div>
+
+					</div> <!-- status-container -->
+
+					<h2>Loading Experience</h2>
+
+					<p>
+						Powered by <a href="http://www.InVisionApp.com/" target="_blank">InVision</a>
+
+						
+							, the best way to share and collaborate on design.
+						
+
+					</p>
+
+				</div> <!-- loading-container -->
+
+				<div class="loading-footer">
+
+					<div class="logo"></div>
+
+					<h3><a href="http://www.InVisionApp.com/" target="_blank">Powered by InVision</a></h3>
+
+					
+						<p><em>Prototyping, Collaboration &amp; Workflow for Designers</em></p>
+					
+
+				</div> <!-- loading-footer -->
+
+			</div> <!-- loading-backdrop -->
+
+		
+		<!-- END: Loading Indicator. -->
+
+	</div>
+	<!-- END: Loading Sequence. -->
+
+	<div ng-include=" '/assets/apps/share/views/partials/preload.htm' "></div>
+	<div ng-include=" '/assets/apps/share/views/layouts/modal.htm' "></div>
+	<div ng-include=" '/assets/apps/share/views/toolbar/toolbar.htm' "></div>
+	<div ng-include=" '/assets/apps/share/views/powered-by/powered-by.htm' "></div>
+
+	<div
+		ng-if="isBrowseOpen"
+		ng-include=" '/assets/apps/share/views/browse/browse.htm' "></div>
+
+	<!-- In order to be able to disable horizontal scrolling for some screens, we need to wrap the view in order to be able to maintain screen alignment -->
+
+	<div class="desktop-wrapper">
+
+		<!-- Tour Points -->
+		<div
+			ng-if=" subview == 'preview' "
+			ng-include=" '/assets/apps/share/views/preview/preview-tour-comments.htm' "></div>
+
+		<div
+			ng-if="subview == 'comments'"
+			ng-include=" '/assets/apps/share/views/comments/comments.htm' "></div>
+
+		<div
+			ng-if="subview == 'preview'"
+			is-share-loaded="{{!isLoadingOpen}}"
+			inv-preview-auto-redirect-listener
+			ng-include=" '/assets/apps/share/views/preview/preview.htm' "></div>
+
+		<!-- Screens for comment mode -->
+		<div
+			ng-show="subview == 'comments'"
+			ng-include=" '/assets/apps/share/views/screens/screens.htm' "c></div>
+
+	</div>
+
+	<div
+		ng-if="browserCompatibility.isNotCompatible"
+		class="m-browser-compatibility ng-cloak"></div>
+
+	
+	
+		<script type="text/javascript" src="assets/scripts.js"></script>
+	
+
+		<script type="text/javascript">
+
+			(function( ng, app ){
+
+				"use strict";
+
+				app.value(
+					"config",
+					{
+						user: {
+							id: 108282858,
+							name: "Zach Ambur",
+							email: "zambur@wisc.edu",
+							avatarID: "00000000-0000-0000-0000000000000007",
+							isAccountAuthenticated: true,
+							isAnonymous: false,
+							hasSeenCommentToolTip: true
+						},
+						shouldShowPoweredBy: false,
+						share: {"screenID":0,"isNavigateAllowed":true,"showToolbarIntroduction":false,"hasClosedShareIntro":true,"isLoadAllScreens":true},
+						project: {"mobileStatusbarFontColor":"white","isProcessed":true,"lastAccessedAt":1456453308000,"sortTypeID":1,"isAdvanced":false,"mobileDeviceWidth":0,"isInGracePeriod":false,"id":6449022,"defaultbackgroundframe":"0","mobileStatusbarIsVisible":true,"isSample":false,"defaultAlignment":"center","isSnap":false,"defaultBackgroundImageID":"","name":"Student Center","isOverQuota":false,"isArchived":false,"mobileDeviceID":0,"createdAt":1456453308000,"defaultbackgroundimageposition":"","homeScreenID":138466764,"defaultbackgroundautostretch":"0","mobileStatusbarBackgroundColor":"#000000","defaultZoomScrollBehavior":1,"defaultBackgroundColor":"","mobileStatusbarIsOpaque":false,"isMobile":false,"updatedAt":1456453572000,"companyID":0,"userID":108282858},
+						screens: [{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":775.0,"imageUrl":"assets/SC_Homepage.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":1,"serverFileName":"138466764.png","thumbnailUrl":"assets/thumb_SC_Homepage.png","id":138466764,"fixedHeaderHeight":0,"extended":{},"name":"SC Homepage","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_Homepage.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":775.0,"imageUrl":"assets/SC_Homepage_DARS.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":2,"serverFileName":"138466766.png","thumbnailUrl":"assets/thumb_SC_Homepage_DARS.png","id":138466766,"fixedHeaderHeight":0,"extended":{},"name":"SC Homepage DARS","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_Homepage_DARS.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":822.0,"imageUrl":"assets/SC_TopMenu.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":3,"serverFileName":"138466767.png","thumbnailUrl":"assets/thumb_SC_TopMenu.png","id":138466767,"fixedHeaderHeight":0,"extended":{},"name":"SC TopMenu","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_TopMenu.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":775.0,"imageUrl":"assets/SC_Homepage_Collapsed.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":4,"serverFileName":"138466765.png","thumbnailUrl":"assets/thumb_SC_Homepage_Collapsed.png","id":138466765,"fixedHeaderHeight":0,"extended":{},"name":"SC Homepage Collapsed","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_Homepage_Collapsed.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":776.0,"imageUrl":"assets/SC_252_Sections.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":5,"serverFileName":"138466760.png","thumbnailUrl":"assets/thumb_SC_252_Sections.png","id":138466760,"fixedHeaderHeight":0,"extended":{},"name":"SC 252 Sections","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_252_Sections.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":776.0,"imageUrl":"assets/SC_252_Grades.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":6,"serverFileName":"138466758.png","thumbnailUrl":"assets/thumb_SC_252_Grades.png","id":138466758,"fixedHeaderHeight":0,"extended":{},"name":"SC 252 Grades","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_252_Grades.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":776.0,"imageUrl":"assets/SC_252_Schedule.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":7,"serverFileName":"138466759.png","thumbnailUrl":"assets/thumb_SC_252_Schedule.png","id":138466759,"fixedHeaderHeight":0,"extended":{},"name":"SC 252 Schedule","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_252_Schedule.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":776.0,"imageUrl":"assets/SC_302_Sections.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":8,"serverFileName":"138466763.png","thumbnailUrl":"assets/thumb_SC_302_Sections.png","id":138466763,"fixedHeaderHeight":0,"extended":{},"name":"SC 302 Sections","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_302_Sections.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":776.0,"imageUrl":"assets/SC_302_Grades.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":9,"serverFileName":"138466761.png","thumbnailUrl":"assets/thumb_SC_302_Grades.png","id":138466761,"fixedHeaderHeight":0,"extended":{},"name":"SC 302 Grades","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_302_Grades.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858},{"updatedByUserName":"Zach Ambur","isProcessed":true,"height":775.0,"imageUrl":"assets/SC_302_Schedule.png","projectID":6449022,"screenGroupId":0,"backgroundimageversion":"1","backgroundImageHeight":"","sort":10,"serverFileName":"138466762.png","thumbnailUrl":"assets/thumb_SC_302_Schedule.png","id":138466762,"fixedHeaderHeight":0,"extended":{},"name":"SC 302 Schedule","backgroundImageID":0,"isArchived":false,"alignment":"center","backgroundImagePosition":"tile-horizontally","imageVersion":1,"unreadCommentCount":0,"fixedFooterHeight":0,"backgroundimageserverfilename":"","createdAt":1456453343000,"screenUploadState":3,"backgroundImageWidth":"","width":1204.0,"commentCount":0,"clientFilename":"SC_302_Schedule.png","backgroundImageUrl":"","screenTypeID":1,"zoomScrollBehavior":1,"backgroundAutostretch":false,"backgroundColor":"c8c8c8","backgroundImageClientFilename":"","isPlaceholder":false,"updatedAt":1456453343000,"backgroundFrame":false,"userID":108282858}],
+						dividers: [{"sort":0,"label":"","projectID":6449022,"expanded":true,"dividerID":0,"position":0,"type":"divider"}],
+						metaScreens: {"icon":{"relation":"apple-touch-icon-precomposed","imageUrl":"","sameOriginImageUrl":""},"splash":{"relation":"apple-touch-startup-image","backgroundColor":"","imageUrl":"","sameOriginImageUrl":""}},
+						hotspots: [{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454254000,"targetScreenID":138466759,"width":205.0,"transitionTypeID":1,"screenID":138466758,"id":477412952,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454254000,"y":457.0,"x":939.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454246000,"targetScreenID":138466760,"width":202.0,"transitionTypeID":1,"screenID":138466758,"id":477412946,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454246000,"y":457.0,"x":529.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454273000,"targetScreenID":138466761,"width":202.0,"transitionTypeID":1,"screenID":138466758,"id":477412965,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454273000,"y":618.0,"x":736.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454281000,"targetScreenID":138466762,"width":205.0,"transitionTypeID":1,"screenID":138466758,"id":477413224,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454281000,"y":618.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454263000,"targetScreenID":138466763,"width":206.0,"transitionTypeID":1,"screenID":138466758,"id":477412959,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454263000,"y":618.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456454200000,"targetScreenID":138466764,"width":232.0,"transitionTypeID":1,"screenID":138466758,"id":477412919,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454200000,"y":0.0,"x":6.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454235000,"targetScreenID":138466764,"width":207.0,"transitionTypeID":1,"screenID":138466758,"id":477412940,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454235000,"y":457.0,"x":319.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454225000,"targetScreenID":138466765,"width":23.0,"transitionTypeID":1,"screenID":138466758,"id":477412935,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454225000,"y":221.0,"x":242.0},{"isScrollTo":false,"eventTypeID":1,"height":29.0,"targetTypeID":1,"createdAt":1456454218000,"targetScreenID":138466766,"width":156.0,"transitionTypeID":1,"screenID":138466758,"id":477412930,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454218000,"y":180.0,"x":55.0},{"isScrollTo":false,"eventTypeID":1,"height":59.0,"targetTypeID":1,"createdAt":1456454207000,"targetScreenID":138466767,"width":109.0,"transitionTypeID":1,"screenID":138466758,"id":477412923,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454207000,"y":0.0,"x":1093.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454357000,"targetScreenID":138466758,"width":203.0,"transitionTypeID":1,"screenID":138466759,"id":477413530,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454357000,"y":581.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454349000,"targetScreenID":138466760,"width":204.0,"transitionTypeID":1,"screenID":138466759,"id":477413526,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454349000,"y":582.0,"x":528.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454383000,"targetScreenID":138466761,"width":204.0,"transitionTypeID":1,"screenID":138466759,"id":477413557,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454383000,"y":744.0,"x":733.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454396000,"targetScreenID":138466762,"width":206.0,"transitionTypeID":1,"screenID":138466759,"id":477413565,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454396000,"y":744.0,"x":939.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454371000,"targetScreenID":138466763,"width":204.0,"transitionTypeID":1,"screenID":138466759,"id":477413543,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454371000,"y":745.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":57.0,"targetTypeID":1,"createdAt":1456454305000,"targetScreenID":138466764,"width":229.0,"transitionTypeID":1,"screenID":138466759,"id":477413494,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454305000,"y":1.0,"x":9.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454339000,"targetScreenID":138466764,"width":206.0,"transitionTypeID":1,"screenID":138466759,"id":477413518,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454339000,"y":581.0,"x":320.0},{"isScrollTo":false,"eventTypeID":1,"height":22.0,"targetTypeID":1,"createdAt":1456454328000,"targetScreenID":138466765,"width":26.0,"transitionTypeID":1,"screenID":138466759,"id":477413511,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454328000,"y":219.0,"x":240.0},{"isScrollTo":false,"eventTypeID":1,"height":33.0,"targetTypeID":1,"createdAt":1456454321000,"targetScreenID":138466766,"width":155.0,"transitionTypeID":1,"screenID":138466759,"id":477413507,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454321000,"y":177.0,"x":56.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456454313000,"targetScreenID":138466767,"width":113.0,"transitionTypeID":1,"screenID":138466759,"id":477413500,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454313000,"y":1.0,"x":1089.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454148000,"targetScreenID":138466758,"width":205.0,"transitionTypeID":1,"screenID":138466760,"id":477412640,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454148000,"y":347.0,"x":732.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454157000,"targetScreenID":138466759,"width":204.0,"transitionTypeID":1,"screenID":138466760,"id":477412642,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454157000,"y":347.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454176000,"targetScreenID":138466761,"width":205.0,"transitionTypeID":1,"screenID":138466760,"id":477412651,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454176000,"y":519.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454185000,"targetScreenID":138466762,"width":205.0,"transitionTypeID":1,"screenID":138466760,"id":477412656,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454185000,"y":519.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454166000,"targetScreenID":138466763,"width":203.0,"transitionTypeID":1,"screenID":138466760,"id":477412647,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454166000,"y":519.0,"x":529.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456454106000,"targetScreenID":138466764,"width":244.0,"transitionTypeID":1,"screenID":138466760,"id":477412619,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454106000,"y":1.0,"x":6.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454139000,"targetScreenID":138466764,"width":206.0,"transitionTypeID":1,"screenID":138466760,"id":477412637,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454139000,"y":347.0,"x":319.0},{"isScrollTo":false,"eventTypeID":1,"height":17.0,"targetTypeID":1,"createdAt":1456454123000,"targetScreenID":138466765,"width":21.0,"transitionTypeID":1,"screenID":138466760,"id":477412631,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454123000,"y":222.0,"x":243.0},{"isScrollTo":false,"eventTypeID":1,"height":33.0,"targetTypeID":1,"createdAt":1456454132000,"targetScreenID":138466766,"width":153.0,"transitionTypeID":1,"screenID":138466760,"id":477412633,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454132000,"y":177.0,"x":58.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456454114000,"targetScreenID":138466767,"width":117.0,"transitionTypeID":1,"screenID":138466760,"id":477412623,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454114000,"y":1.0,"x":1085.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454617000,"targetScreenID":138466758,"width":203.0,"transitionTypeID":1,"screenID":138466761,"id":477414718,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454617000,"y":275.0,"x":735.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454627000,"targetScreenID":138466759,"width":203.0,"transitionTypeID":1,"screenID":138466761,"id":477414975,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454627000,"y":275.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454592000,"targetScreenID":138466760,"width":205.0,"transitionTypeID":1,"screenID":138466761,"id":477414450,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454592000,"y":274.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454657000,"targetScreenID":138466762,"width":207.0,"transitionTypeID":1,"screenID":138466761,"id":477414994,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454657000,"y":622.0,"x":938.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454645000,"targetScreenID":138466763,"width":203.0,"transitionTypeID":1,"screenID":138466761,"id":477414986,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454645000,"y":623.0,"x":528.0},{"isScrollTo":false,"eventTypeID":1,"height":57.0,"targetTypeID":1,"createdAt":1456454556000,"targetScreenID":138466764,"width":229.0,"transitionTypeID":1,"screenID":138466761,"id":477414432,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454556000,"y":1.0,"x":7.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454635000,"targetScreenID":138466764,"width":206.0,"transitionTypeID":1,"screenID":138466761,"id":477414981,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454635000,"y":623.0,"x":320.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454569000,"targetScreenID":138466765,"width":24.0,"transitionTypeID":1,"screenID":138466761,"id":477414438,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454569000,"y":221.0,"x":241.0},{"isScrollTo":false,"eventTypeID":1,"height":31.0,"targetTypeID":1,"createdAt":1456454563000,"targetScreenID":138466766,"width":151.0,"transitionTypeID":1,"screenID":138466761,"id":477414435,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454563000,"y":178.0,"x":58.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456454581000,"targetScreenID":138466767,"width":115.0,"transitionTypeID":1,"screenID":138466761,"id":477414448,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454581000,"y":2.0,"x":1085.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454739000,"targetScreenID":138466758,"width":203.0,"transitionTypeID":1,"screenID":138466762,"id":477415557,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454739000,"y":273.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454748000,"targetScreenID":138466759,"width":203.0,"transitionTypeID":1,"screenID":138466762,"id":477415817,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454748000,"y":274.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454725000,"targetScreenID":138466760,"width":204.0,"transitionTypeID":1,"screenID":138466762,"id":477415549,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454725000,"y":274.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454774000,"targetScreenID":138466761,"width":205.0,"transitionTypeID":1,"screenID":138466762,"id":477416347,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454774000,"y":706.0,"x":732.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454765000,"targetScreenID":138466763,"width":203.0,"transitionTypeID":1,"screenID":138466762,"id":477416086,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454765000,"y":705.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":56.0,"targetTypeID":1,"createdAt":1456454681000,"targetScreenID":138466764,"width":229.0,"transitionTypeID":1,"screenID":138466762,"id":477415012,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454681000,"y":3.0,"x":13.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454757000,"targetScreenID":138466764,"width":207.0,"transitionTypeID":1,"screenID":138466762,"id":477415822,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454757000,"y":706.0,"x":319.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456454696000,"targetScreenID":138466765,"width":23.0,"transitionTypeID":1,"screenID":138466762,"id":477415020,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454696000,"y":218.0,"x":242.0},{"isScrollTo":false,"eventTypeID":1,"height":30.0,"targetTypeID":1,"createdAt":1456454689000,"targetScreenID":138466766,"width":152.0,"transitionTypeID":1,"screenID":138466762,"id":477415016,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454689000,"y":177.0,"x":58.0},{"isScrollTo":false,"eventTypeID":1,"height":59.0,"targetTypeID":1,"createdAt":1456454710000,"targetScreenID":138466767,"width":109.0,"transitionTypeID":1,"screenID":138466762,"id":477415283,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454710000,"y":0.0,"x":1092.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454486000,"targetScreenID":138466758,"width":204.0,"transitionTypeID":1,"screenID":138466763,"id":477414142,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454486000,"y":274.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454498000,"targetScreenID":138466759,"width":205.0,"transitionTypeID":1,"screenID":138466763,"id":477414150,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454498000,"y":274.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454466000,"targetScreenID":138466760,"width":207.0,"transitionTypeID":1,"screenID":138466763,"id":477414119,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454474000,"y":275.0,"x":525.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454521000,"targetScreenID":138466761,"width":203.0,"transitionTypeID":1,"screenID":138466763,"id":477414161,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454521000,"y":671.0,"x":735.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454531000,"targetScreenID":138466762,"width":204.0,"transitionTypeID":1,"screenID":138466763,"id":477414164,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454531000,"y":671.0,"x":942.0},{"isScrollTo":false,"eventTypeID":1,"height":57.0,"targetTypeID":1,"createdAt":1456454411000,"targetScreenID":138466764,"width":235.0,"transitionTypeID":1,"screenID":138466763,"id":477413575,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454411000,"y":1.0,"x":6.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454512000,"targetScreenID":138466764,"width":206.0,"transitionTypeID":1,"screenID":138466763,"id":477414157,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454512000,"y":672.0,"x":321.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454426000,"targetScreenID":138466765,"width":26.0,"transitionTypeID":1,"screenID":138466763,"id":477413841,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454426000,"y":221.0,"x":241.0},{"isScrollTo":false,"eventTypeID":1,"height":32.0,"targetTypeID":1,"createdAt":1456454419000,"targetScreenID":138466766,"width":152.0,"transitionTypeID":1,"screenID":138466763,"id":477413834,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454419000,"y":177.0,"x":58.0},{"isScrollTo":false,"eventTypeID":1,"height":59.0,"targetTypeID":1,"createdAt":1456454434000,"targetScreenID":138466767,"width":110.0,"transitionTypeID":1,"screenID":138466763,"id":477413844,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454434000,"y":0.0,"x":1090.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453638000,"targetScreenID":138466758,"width":204.0,"transitionTypeID":1,"screenID":138466764,"id":477409924,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453638000,"y":274.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456453650000,"targetScreenID":138466759,"width":205.0,"transitionTypeID":1,"screenID":138466764,"id":477409956,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453650000,"y":273.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453630000,"targetScreenID":138466760,"width":205.0,"transitionTypeID":1,"screenID":138466764,"id":477409919,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453630000,"y":274.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453672000,"targetScreenID":138466761,"width":203.0,"transitionTypeID":1,"screenID":138466764,"id":477409970,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453672000,"y":443.0,"x":735.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453680000,"targetScreenID":138466762,"width":206.0,"transitionTypeID":1,"screenID":138466764,"id":477409973,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453680000,"y":443.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453659000,"targetScreenID":138466763,"width":206.0,"transitionTypeID":1,"screenID":138466764,"id":477409962,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453659000,"y":443.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456453602000,"targetScreenID":138466765,"width":21.0,"transitionTypeID":1,"screenID":138466764,"id":477409908,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453602000,"y":220.0,"x":243.0},{"isScrollTo":false,"eventTypeID":1,"height":29.0,"targetTypeID":1,"createdAt":1456453615000,"targetScreenID":138466766,"width":149.0,"transitionTypeID":1,"screenID":138466764,"id":477409911,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453615000,"y":177.0,"x":59.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456453592000,"targetScreenID":138466767,"width":113.0,"transitionTypeID":1,"screenID":138466764,"id":477409901,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453592000,"y":0.0,"x":1089.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456454052000,"targetScreenID":138466758,"width":204.0,"transitionTypeID":1,"screenID":138466765,"id":477412341,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454052000,"y":274.0,"x":733.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454061000,"targetScreenID":138466759,"width":205.0,"transitionTypeID":1,"screenID":138466765,"id":477412346,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454061000,"y":273.0,"x":940.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454043000,"targetScreenID":138466760,"width":204.0,"transitionTypeID":1,"screenID":138466765,"id":477412335,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454043000,"y":273.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454079000,"targetScreenID":138466761,"width":204.0,"transitionTypeID":1,"screenID":138466765,"id":477412354,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454079000,"y":444.0,"x":735.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456454090000,"targetScreenID":138466762,"width":203.0,"transitionTypeID":1,"screenID":138466765,"id":477412358,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454090000,"y":443.0,"x":942.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456454070000,"targetScreenID":138466763,"width":205.0,"transitionTypeID":1,"screenID":138466765,"id":477412350,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454070000,"y":443.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":56.0,"targetTypeID":1,"createdAt":1456453998000,"targetScreenID":138466764,"width":240.0,"transitionTypeID":1,"screenID":138466765,"id":477412005,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453998000,"y":1.0,"x":1.0},{"isScrollTo":false,"eventTypeID":1,"height":17.0,"targetTypeID":1,"createdAt":1456454031000,"targetScreenID":138466764,"width":23.0,"transitionTypeID":1,"screenID":138466765,"id":477412326,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454031000,"y":220.0,"x":241.0},{"isScrollTo":false,"eventTypeID":1,"height":25.0,"targetTypeID":1,"createdAt":1456454023000,"targetScreenID":138466766,"width":147.0,"transitionTypeID":1,"screenID":138466765,"id":477412320,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454023000,"y":181.0,"x":60.0},{"isScrollTo":false,"eventTypeID":1,"height":56.0,"targetTypeID":1,"createdAt":1456454007000,"targetScreenID":138466767,"width":115.0,"transitionTypeID":1,"screenID":138466765,"id":477412056,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456454007000,"y":2.0,"x":1087.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453483000,"targetScreenID":138466758,"width":205.0,"transitionTypeID":1,"screenID":138466766,"id":477409581,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453483000,"y":274.0,"x":733.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456453502000,"targetScreenID":138466759,"width":202.0,"transitionTypeID":1,"screenID":138466766,"id":477409848,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453502000,"y":272.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453471000,"targetScreenID":138466760,"width":206.0,"transitionTypeID":1,"screenID":138466766,"id":477409573,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453471000,"y":273.0,"x":525.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456453534000,"targetScreenID":138466761,"width":204.0,"transitionTypeID":1,"screenID":138466766,"id":477409866,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453534000,"y":442.0,"x":735.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453551000,"targetScreenID":138466762,"width":204.0,"transitionTypeID":1,"screenID":138466766,"id":477409874,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453551000,"y":443.0,"x":942.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453524000,"targetScreenID":138466763,"width":203.0,"transitionTypeID":1,"screenID":138466766,"id":477409861,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453524000,"y":444.0,"x":528.0},{"isScrollTo":false,"eventTypeID":1,"height":56.0,"targetTypeID":1,"createdAt":1456453419000,"targetScreenID":138466764,"width":242.0,"transitionTypeID":1,"screenID":138466766,"id":477409550,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453419000,"y":3.0,"x":0.0},{"isScrollTo":false,"eventTypeID":1,"height":30.0,"targetTypeID":1,"createdAt":1456453433000,"targetScreenID":138466764,"width":148.0,"transitionTypeID":1,"screenID":138466766,"id":477409558,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453433000,"y":177.0,"x":60.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453446000,"targetScreenID":138466765,"width":22.0,"transitionTypeID":1,"screenID":138466766,"id":477409565,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453446000,"y":219.0,"x":242.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456453460000,"targetScreenID":138466767,"width":111.0,"transitionTypeID":1,"screenID":138466766,"id":477409571,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453460000,"y":0.0,"x":1091.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453753000,"targetScreenID":138466758,"width":205.0,"transitionTypeID":1,"screenID":138466767,"id":477410528,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453753000,"y":321.0,"x":733.0},{"isScrollTo":false,"eventTypeID":1,"height":21.0,"targetTypeID":1,"createdAt":1456453763000,"targetScreenID":138466759,"width":203.0,"transitionTypeID":1,"screenID":138466767,"id":477410538,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453763000,"y":320.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456453745000,"targetScreenID":138466760,"width":204.0,"transitionTypeID":1,"screenID":138466767,"id":477410519,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453745000,"y":321.0,"x":527.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453782000,"targetScreenID":138466761,"width":205.0,"transitionTypeID":1,"screenID":138466767,"id":477410556,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453782000,"y":491.0,"x":734.0},{"isScrollTo":false,"eventTypeID":1,"height":20.0,"targetTypeID":1,"createdAt":1456453962000,"targetScreenID":138466762,"width":204.0,"transitionTypeID":1,"screenID":138466767,"id":477411444,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453962000,"y":491.0,"x":941.0},{"isScrollTo":false,"eventTypeID":1,"height":19.0,"targetTypeID":1,"createdAt":1456453772000,"targetScreenID":138466763,"width":204.0,"transitionTypeID":1,"screenID":138466767,"id":477410546,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453772000,"y":492.0,"x":528.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456453703000,"targetScreenID":138466764,"width":120.0,"transitionTypeID":1,"screenID":138466767,"id":477409982,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453703000,"y":0.0,"x":1082.0},{"isScrollTo":false,"eventTypeID":1,"height":58.0,"targetTypeID":1,"createdAt":1456453718000,"targetScreenID":138466764,"width":228.0,"transitionTypeID":1,"screenID":138466767,"id":477409988,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453718000,"y":0.0,"x":11.0},{"isScrollTo":false,"eventTypeID":1,"height":18.0,"targetTypeID":1,"createdAt":1456453734000,"targetScreenID":138466765,"width":23.0,"transitionTypeID":1,"screenID":138466767,"id":477410257,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453734000,"y":267.0,"x":242.0},{"isScrollTo":false,"eventTypeID":1,"height":29.0,"targetTypeID":1,"createdAt":1456453726000,"targetScreenID":138466766,"width":151.0,"transitionTypeID":1,"screenID":138466767,"id":477409995,"metaData":{},"templateID":"","isBottomAligned":false,"updatedAt":1456453726000,"y":225.0,"x":58.0}],
+						branding: {
+							stub: "invision",
+							url: "http://www.InVisionApp.com/"
+						},
+						mobileDevices: [{"deviceType":"desktop","loadScreenResolution":"","orientation":"any","mobileSkin":"any","mobileSkinFilename":"","description":"desktop","deviceHeight":0,"mobileSkinColor":"","mobileDeviceID":0,"platform":"any","deviceWidth":0,"viewportWidth":"0","viewportHeight":"0","isDefaultDeviceType":true,"iconResolution":"","className":"desktop"},{"deviceType":"phone","loadScreenResolution":"640 x 1096","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone-portrait.png","description":"iPhone 5 - Black","deviceHeight":778,"mobileSkinColor":"black","mobileDeviceID":1,"platform":"iOS","deviceWidth":374,"viewportWidth":"320","viewportHeight":"568","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone-portrait"},{"deviceType":"phone","loadScreenResolution":"640 x 1096","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone-landscape.png","description":"iPhone 5 - Black","deviceHeight":374,"mobileSkinColor":"black","mobileDeviceID":2,"platform":"iOS","deviceWidth":778,"viewportWidth":"568","viewportHeight":"320","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone-landscape"},{"deviceType":"tablet","loadScreenResolution":"1536 x 2048","orientation":"portrait","mobileSkin":"iPad","mobileSkinFilename":"ipad-portrait.png","description":"iPad - Black","deviceHeight":950,"mobileSkinColor":"black","mobileDeviceID":3,"platform":"iOS","deviceWidth":640,"viewportWidth":"576","viewportHeight":"768","isDefaultDeviceType":true,"iconResolution":"152 x 152","className":"ipad-portrait"},{"deviceType":"tablet","loadScreenResolution":"2048 x 1496","orientation":"landscape","mobileSkin":"iPad","mobileSkinFilename":"ipad-landscape.png","description":"iPad - Black","deviceHeight":640,"mobileSkinColor":"black","mobileDeviceID":4,"platform":"iOS","deviceWidth":950,"viewportWidth":"768","viewportHeight":"576","isDefaultDeviceType":true,"iconResolution":"152 x 152","className":"ipad-landscape"},{"deviceType":"phone","loadScreenResolution":"640 x 920","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone4-portrait.png","description":"iPhone 4 - Black","deviceHeight":690,"mobileSkinColor":"black","mobileDeviceID":5,"platform":"iOS","deviceWidth":374,"viewportWidth":"320","viewportHeight":"480","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone4-portrait"},{"deviceType":"phone","loadScreenResolution":"640 x 920","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone4-landscape.png","description":"iPhone 4 - Black","deviceHeight":374,"mobileSkinColor":"black","mobileDeviceID":6,"platform":"iOS","deviceWidth":690,"viewportWidth":"480","viewportHeight":"320","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone4-landscape"},{"deviceType":"phone","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"HTC One","mobileSkinFilename":"htcOne-portrait.png","description":"HTC One - Black","deviceHeight":836,"mobileSkinColor":"black","mobileDeviceID":7,"platform":"Android","deviceWidth":402,"viewportWidth":"360","viewportHeight":"640","isDefaultDeviceType":true,"iconResolution":"192 x 192","className":"htcOne-portrait"},{"deviceType":"phone","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"HTC One","mobileSkinFilename":"htcOne-landscape.png","description":"HTC One - Black","deviceHeight":402,"mobileSkinColor":"black","mobileDeviceID":8,"platform":"Android","deviceWidth":836,"viewportWidth":"640","viewportHeight":"360","isDefaultDeviceType":true,"iconResolution":"192 x 192","className":"htcOne-landscape"},{"deviceType":"phone","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"Samsung Galaxy S4","mobileSkinFilename":"samsungS4-portrait.png","description":"Samsung Galaxy S4 - Black","deviceHeight":786,"mobileSkinColor":"black","mobileDeviceID":9,"platform":"Android","deviceWidth":406,"viewportWidth":"360","viewportHeight":"640","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"samsungS4-portrait"},{"deviceType":"phone","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"Samsung Galaxy S4","mobileSkinFilename":"samsungS4-landscape.png","description":"Samsung Galaxy S4 - Black","deviceHeight":406,"mobileSkinColor":"black","mobileDeviceID":10,"platform":"Android","deviceWidth":786,"viewportWidth":"640","viewportHeight":"360","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"samsungS4-landscape"},{"deviceType":"phone","loadScreenResolution":"640 x 1096","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone-portrait-white.png","description":"iPhone 5 - White","deviceHeight":778,"mobileSkinColor":"white","mobileDeviceID":11,"platform":"iOS","deviceWidth":374,"viewportWidth":"320","viewportHeight":"568","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone-portrait"},{"deviceType":"phone","loadScreenResolution":"640 x 1096","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone-landscape-white.png","description":"iPhone 5 - White","deviceHeight":374,"mobileSkinColor":"white","mobileDeviceID":12,"platform":"iOS","deviceWidth":778,"viewportWidth":"568","viewportHeight":"320","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone-landscape"},{"deviceType":"tablet","loadScreenResolution":"1536 x 2048","orientation":"portrait","mobileSkin":"iPad","mobileSkinFilename":"ipad-portrait-white.png","description":"iPad - White","deviceHeight":950,"mobileSkinColor":"white","mobileDeviceID":13,"platform":"iOS","deviceWidth":640,"viewportWidth":"576","viewportHeight":"768","isDefaultDeviceType":false,"iconResolution":"152 x 152","className":"ipad-portrait"},{"deviceType":"tablet","loadScreenResolution":"2048 x 1496","orientation":"landscape","mobileSkin":"iPad","mobileSkinFilename":"ipad-landscape-white.png","description":"iPad - White","deviceHeight":640,"mobileSkinColor":"white","mobileDeviceID":14,"platform":"iOS","deviceWidth":950,"viewportWidth":"768","viewportHeight":"576","isDefaultDeviceType":false,"iconResolution":"152 x 152","className":"ipad-landscape"},{"deviceType":"phone","loadScreenResolution":"640 x 920","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone4-portrait-white.png","description":"iPhone 4 - White","deviceHeight":690,"mobileSkinColor":"white","mobileDeviceID":15,"platform":"iOS","deviceWidth":374,"viewportWidth":"320","viewportHeight":"480","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone4-portrait"},{"deviceType":"phone","loadScreenResolution":"640 x 920","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone4-landscape-white.png","description":"iPhone 4 - White","deviceHeight":374,"mobileSkinColor":"white","mobileDeviceID":16,"platform":"iOS","deviceWidth":690,"viewportWidth":"480","viewportHeight":"320","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone4-landscape"},{"deviceType":"phone","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"HTC One","mobileSkinFilename":"htcOne-portrait-white.png","description":"HTC One - White","deviceHeight":836,"mobileSkinColor":"white","mobileDeviceID":17,"platform":"Android","deviceWidth":402,"viewportWidth":"360","viewportHeight":"640","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"htcOne-portrait"},{"deviceType":"phone","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"HTC One","mobileSkinFilename":"htcOne-landscape-white.png","description":"HTC One - White","deviceHeight":402,"mobileSkinColor":"white","mobileDeviceID":18,"platform":"Android","deviceWidth":836,"viewportWidth":"640","viewportHeight":"360","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"htcOne-landscape"},{"deviceType":"phone","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"Samsung Galaxy S4","mobileSkinFilename":"samsungS4-portrait-white.png","description":"Samsung Galaxy S4 - White","deviceHeight":786,"mobileSkinColor":"white","mobileDeviceID":19,"platform":"Android","deviceWidth":406,"viewportWidth":"360","viewportHeight":"640","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"samsungS4-portrait"},{"deviceType":"phone","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"Samsung Galaxy S4","mobileSkinFilename":"samsungS4-landscape-white.png","description":"Samsung Galaxy S4 - White","deviceHeight":406,"mobileSkinColor":"white","mobileDeviceID":20,"platform":"Android","deviceWidth":786,"viewportWidth":"640","viewportHeight":"360","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"samsungS4-landscape"},{"deviceType":"tablet","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"Nexus 7","mobileSkinFilename":"nexus7-portrait.png","description":"Nexus 7","deviceHeight":870,"mobileSkinColor":"black","mobileDeviceID":21,"platform":"Android","deviceWidth":532,"viewportWidth":"450","viewportHeight":"685","isDefaultDeviceType":true,"iconResolution":"192 x 192","className":"nexus7-portrait"},{"deviceType":"tablet","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"Nexus 7","mobileSkinFilename":"nexus7-landscape.png","description":"Nexus 7","deviceHeight":532,"mobileSkinColor":"black","mobileDeviceID":22,"platform":"Android","deviceWidth":870,"viewportWidth":"720","viewportHeight":"415","isDefaultDeviceType":true,"iconResolution":"192 x 192","className":"nexus7-landscape"},{"deviceType":"tablet","loadScreenResolution":"1080 x 1920","orientation":"portrait","mobileSkin":"Nexus 10","mobileSkinFilename":"nexus10-portrait.png","description":"Nexus 10","deviceHeight":1112,"mobileSkinColor":"black","mobileDeviceID":23,"platform":"Android","deviceWidth":776,"viewportWidth":"600","viewportHeight":"925","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"nexus10-portrait"},{"deviceType":"tablet","loadScreenResolution":"1920 x 1080","orientation":"landscape","mobileSkin":"Nexus 10","mobileSkinFilename":"nexus10-landscape.png","description":"Nexus 10","deviceHeight":776,"mobileSkinColor":"black","mobileDeviceID":24,"platform":"Android","deviceWidth":1112,"viewportWidth":"960","viewportHeight":"565","isDefaultDeviceType":false,"iconResolution":"192 x 192","className":"nexus10-landscape"},{"deviceType":"phone","loadScreenResolution":"750 x 1294","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone6-portrait.png","description":"iPhone 6 - Black","deviceHeight":850,"mobileSkinColor":"black","mobileDeviceID":25,"platform":"iOS","deviceWidth":416,"viewportWidth":"375","viewportHeight":"667","isDefaultDeviceType":true,"iconResolution":"120 x 120","className":"iphone6-portrait"},{"deviceType":"phone","loadScreenResolution":"750 x 1294","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone6-landscape.png","description":"iPhone 6 - Black","deviceHeight":416,"mobileSkinColor":"black","mobileDeviceID":26,"platform":"iOS","deviceWidth":850,"viewportWidth":"667","viewportHeight":"375","isDefaultDeviceType":true,"iconResolution":"120 x 120","className":"iphone6-landscape"},{"deviceType":"phone","loadScreenResolution":"750 x 1294","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone6-portrait-white.png","description":"iPhone 6 - White","deviceHeight":850,"mobileSkinColor":"white","mobileDeviceID":27,"platform":"iOS","deviceWidth":416,"viewportWidth":"375","viewportHeight":"667","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone6-portrait"},{"deviceType":"phone","loadScreenResolution":"750 x 1294","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone6-landscape-white.png","description":"iPhone 6 - White","deviceHeight":416,"mobileSkinColor":"white","mobileDeviceID":28,"platform":"iOS","deviceWidth":850,"viewportWidth":"667","viewportHeight":"375","isDefaultDeviceType":false,"iconResolution":"120 x 120","className":"iphone6-landscape"},{"deviceType":"phone","loadScreenResolution":"1242 x 2148","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone6plus-portrait.png","description":"iPhone 6 Plus - Black","deviceHeight":920,"mobileSkinColor":"black","mobileDeviceID":29,"platform":"iOS","deviceWidth":454,"viewportWidth":"412","viewportHeight":"734","isDefaultDeviceType":false,"iconResolution":"180 x 180","className":"iphone6plus-portrait"},{"deviceType":"phone","loadScreenResolution":"1242 x 2148","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone6plus-landscape.png","description":"iPhone 6 Plus - Black","deviceHeight":454,"mobileSkinColor":"black","mobileDeviceID":30,"platform":"iOS","deviceWidth":920,"viewportWidth":"734","viewportHeight":"412","isDefaultDeviceType":false,"iconResolution":"180 x 180","className":"iphone6plus-landscape"},{"deviceType":"phone","loadScreenResolution":"1242 x 2148","orientation":"portrait","mobileSkin":"iPhone","mobileSkinFilename":"iphone6plus-portrait-white.png","description":"iPhone 6 Plus - White","deviceHeight":920,"mobileSkinColor":"white","mobileDeviceID":31,"platform":"iOS","deviceWidth":454,"viewportWidth":"412","viewportHeight":"734","isDefaultDeviceType":false,"iconResolution":"180 x 180","className":"iphone6plus-portrait"},{"deviceType":"phone","loadScreenResolution":"1242 x 2148","orientation":"landscape","mobileSkin":"iPhone","mobileSkinFilename":"iphone6plus-portrait-white.png","description":"iPhone 6 Plus - White","deviceHeight":454,"mobileSkinColor":"white","mobileDeviceID":32,"platform":"iOS","deviceWidth":920,"viewportWidth":"734","viewportHeight":"412","isDefaultDeviceType":false,"iconResolution":"180 x 180","className":"iphone6plus-landscape"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-rose-gold.png","description":"38mm - Rose Gold","deviceHeight":378,"mobileSkinColor":"rose-gold","mobileDeviceID":33,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-rose-gold"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-silver-aluminum.png","description":"38mm - Silver Aluminum","deviceHeight":378,"mobileSkinColor":"silver-aluminum","mobileDeviceID":34,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-silver-aluminum"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-space-black-stainless-steel.png","description":"38mm - Space Black Stainless Steel","deviceHeight":378,"mobileSkinColor":"space-black-stainless-steel","mobileDeviceID":35,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-space-black-stainless-steel"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-space-gray-aluminum.png","description":"38mm - Space Gray Aluminum","deviceHeight":378,"mobileSkinColor":"space-gray-aluminum","mobileDeviceID":36,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-space-gray-aluminum"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-stainless-steel.png","description":"38mm - Stainless Steel","deviceHeight":378,"mobileSkinColor":"stainless-steel","mobileDeviceID":37,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-stainless-steel"},{"deviceType":"watch","loadScreenResolution":"272px x 340px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-38mm-yellow-gold.png","description":"38mm - Yellow Gold","deviceHeight":378,"mobileSkinColor":"yellow-gold","mobileDeviceID":38,"platform":"iOS","deviceWidth":209,"viewportWidth":"136","viewportHeight":"170","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-38mm-yellow-gold"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-rose-gold.png","description":"42mm - Rose Gold","deviceHeight":438,"mobileSkinColor":"rose-gold","mobileDeviceID":39,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-42mm-rose-gold"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-silver-aluminum.png","description":"42mm - Silver Aluminum","deviceHeight":438,"mobileSkinColor":"silver-aluminum","mobileDeviceID":40,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-42mm-silver-aluminum"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-space-black-stainless-steel.png","description":"42mm - Space Black Stainless Steel","deviceHeight":438,"mobileSkinColor":"space-black-stainless-steel","mobileDeviceID":41,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-42mm-space-black-stainless-steel"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-space-gray-aluminum.png","description":"42mm - Space Gray Aluminum","deviceHeight":438,"mobileSkinColor":"space-gray-aluminum","mobileDeviceID":42,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":true,"iconResolution":"144 x 144","className":"apple-watch-42mm-space-gray-aluminum"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-stainless-steel.png","description":"42mm - Stainless Steel","deviceHeight":438,"mobileSkinColor":"stainless-steel","mobileDeviceID":43,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-42mm-stainless-steel"},{"deviceType":"watch","loadScreenResolution":"312px x 390px","orientation":"portrait","mobileSkin":"apple-watch","mobileSkinFilename":"apple-watch-42mm-yellow-gold.png","description":"42mm - Yellow Gold","deviceHeight":438,"mobileSkinColor":"yellow-gold","mobileDeviceID":44,"platform":"iOS","deviceWidth":240,"viewportWidth":"156","viewportHeight":"195","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"apple-watch-42mm-yellow-gold"},{"deviceType":"watch","loadScreenResolution":"320px x 320px","orientation":"portrait","mobileSkin":"android-watch","mobileSkinFilename":"android-round-dark.png","description":"Round - Dark","deviceHeight":310,"mobileSkinColor":"round-dark","mobileDeviceID":45,"platform":"android","deviceWidth":185,"viewportWidth":"160","viewportHeight":"160","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"android-round-dark"},{"deviceType":"watch","loadScreenResolution":"320px x 320px","orientation":"portrait","mobileSkin":"android-watch","mobileSkinFilename":"android-round-light.png","description":"Round - Light","deviceHeight":310,"mobileSkinColor":"round-light","mobileDeviceID":46,"platform":"android","deviceWidth":185,"viewportWidth":"160","viewportHeight":"160","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"android-round-light"},{"deviceType":"watch","loadScreenResolution":"320px x 320px","orientation":"portrait","mobileSkin":"android-watch","mobileSkinFilename":"android-square-dark.png","description":"Square - Dark","deviceHeight":377,"mobileSkinColor":"square-dark","mobileDeviceID":47,"platform":"android","deviceWidth":223,"viewportWidth":"160","viewportHeight":"160","isDefaultDeviceType":true,"iconResolution":"144 x 144","className":"android-square-dark"},{"deviceType":"watch","loadScreenResolution":"320px x 320px","orientation":"portrait","mobileSkin":"android-watch","mobileSkinFilename":"android-square-light.png","description":"Square - Light","deviceHeight":377,"mobileSkinColor":"square-light","mobileDeviceID":48,"platform":"android","deviceWidth":223,"viewportWidth":"160","viewportHeight":"160","isDefaultDeviceType":false,"iconResolution":"144 x 144","className":"android-square-light"}]
+					}
+				);
+
+			})( angular, InVision );
+
+		</script>
+
+	<script type="text/ng-template" id="/assets/apps/share/views/screens/screens.htm"><div ng-if="!isLiveShare && project.isSnap">
+<div 
+ng-if="subview == 'comments'" 
+ng-include=" '/assets/apps/share/views/share-lite/comment-bar.htm' "></div>
+<div ng-include=" '/assets/apps/share/views/share-lite/share-bar.htm' "></div>
+</div>
+<!-- desktop projects -->
+<div
+ng-if=" !project.isMobile || subview == 'comments' "
+ng-controller="screens.ScreensController"
+inv-screens
+inv-add-padding-on-scroll
+class="m-screens desktop"
+ng-class="{ isScaledCommentMode: project.isMobile }">
+<div
+ng-repeat="screen in screens track by screen.id"
+data-distance="{{ screen.distanceFromStartScreen }}"
+class="screen {{ screen.alignment }}"
+ng-class="{ visible: (screen.id == selectedScreen.id) }"
+ng-style="{ 
+width: ( Math.round(screen.width * screen.displayScale) + 'px' ), 
+height: ( Math.round(screen.height * screen.displayScale) + 'px' ) 
+}"
+data-displayScale="{{screen.displayScale}}">
+<img
+inv-screen
+ng-src="{{ screen.imageUrl }}"
+ng-style="{ 
+width: ( Math.round(screen.width * screen.displayScale) + 'px' ), 
+height: ( Math.round(screen.height * screen.displayScale) + 'px' ) 
+}" />
+</div>
+</div>
+<!-- mobile projects-->
+<div
+ng-if=" project.isMobile && subview == 'preview' "
+ng-controller="screens.ScreensController"
+inv-screens
+data-distance="{{ screen.distanceFromStartScreen }}"
+class="m-screens" >
+<div
+ng-repeat="screen in screens track by screen.id"
+class="screen mobile {{ screen.alignment }}"
+ng-class="{ visible: (screen.id == selectedScreen.id) }">
+<img inv-screen ng-src="{{ screen.imageUrl }}" />
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/browse/browse.htm">
+<div
+ng-controller="browse.BrowseController"
+inv-browse-key-combos
+class="m-browse"
+ng-class="{
+mobile: project.isMobile,
+phone: deviceTemplate.deviceType == 'phone',
+tablet: isTabletPortrait
+} ">
+<!-- BEGIN: Header. -->
+<div class="header">
+<span ng-if=" project.isMobile ">
+<img ng-if=" !! appIcon.imageUrl " class="appIcon" ng-src="{{ appIcon.imageUrl }}" alt="{{ project.name }}">
+<img ng-if=" ! appIcon.imageUrl " class="appIcon" ng-src="assets/apps/share/img/icon.png">
+</span>
+<h2>
+{{ project.name }}
+</h2>
+<a class="btnClose" href="javascript:;" ng-click=" toggleBrowse() ">x</a>
+</div>
+<!-- END: Header. -->
+<!-- BEGIN: Screens. -->
+<div class="screens">
+<div ng-include=" '/assets/apps/share/views/browse/thumbnails.htm' "></div>
+</div>
+<!-- END: Screens. -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/browse/thumbnails.htm">
+<div class="thumbnail-list" ng-class="{ 'without-comments': excludeComments }">
+<div ng-repeat="displayItem in displayObjects" 
+class="{{displayItem.type}}" 
+ng-class="{ 'invisible-group': displayItem.type == 'divider' && displayItem.sort == 0}" >
+<div ng-if=" shouldDividerDisplay(displayItem) " class="divider">
+<p class="dividerLabel">
+<span class="title">{{ displayItem.label }}</span>
+<span class="count">{{ displayItem.screenCount }}</span>
+</p>
+</div>
+<a  ng-if="displayItem.type == 'screenObj' "
+ng-click="applyScreenNavigation( displayItem )"
+class="item"
+ng-class="{ selected: ( displayItem == selectedScreen ) }">
+<span class="thumbnail-viewport " style="background: #{{displayItem.backgroundColor}}">
+<img ng-src="{{ displayItem.thumbnailUrl }}" />
+</span>
+<span class="name">
+{{ displayItem.name }}
+</span>
+<span class="hasComments" ng-if=" displayItem.unreadCommentCount ">&bull;</span>
+</a>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/browse/list.htm">
+<div class="name-list" ng-class="{ 'without-comments': excludeComments }">
+<!-- BEGIN: Header Row. -->
+<div class="header-row">
+<span class="col name-col">
+<a ng-click class="name">
+Name
+</a>
+</span>
+<span class="col comments-col">
+<a ng-click class="comments">
+Comments
+</a>
+</span>
+<span class="col version-col">
+<a ng-click class="version">
+Version
+</a>
+</span>
+<span class="col updated-at-col">
+<a ng-click class="updated-at">
+Last Updated
+</a>
+</span>
+<span class="col updated-by-col">
+<a ng-click class="updated-by">
+Updated By
+</a>
+</span>
+</div>
+<!-- END: Header Row. -->
+<!-- BEGIN: Data Rows. -->
+<div ng-repeat="displayItem in displayObjects | filter:search" class="data-row">
+<div ng-if=" displayItem.type == 'divider' " class="divider">
+<div class="line">
+<span class="dividerLabel">{{displayItem.label}}</span>
+</div>
+</div>
+<a ng-if="displayItem.type == 'screenObj' "
+ng-click="applyScreenNavigation( displayItem )"
+class="item"
+ng-class="{ selected: ( displayItem == selectedScreen ) }">
+<span class="col name-col">
+<span class="name">
+{{ displayItem.name }}
+</span>
+</span>
+<span class="col comments-col">
+<span class="comments" ng-class="{ new: displayItem.unreadCommentCount, old: ( displayItem.commentCount && ! displayItem.unreadCommentCount ) }">
+<span class="unread">{{ displayItem.unreadCommentCount }}</span>
+<span class="total">{{ displayItem.commentCount }}</span>
+</span>
+</span>
+<span class="col version-col">
+<span class="version">
+{{ displayItem.imageVersion }}
+</span>
+</span>
+<span class="col updated-at-col">
+<span class="updated-at">
+{{ displayItem.updatedAtDateLabel }}
+</span>
+</span>
+<span class="col updated-by-col">
+<span class="updated-by">
+{{ displayItem.updatedByUserName }}
+</span>
+</span>
+</a>
+</div>
+<!-- END: Data Rows. -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/directives/share-sketch-viewer.htm"><div id="shareSketchViewer"  ng-show=" isShowingSketchViewer ">
+<div class="modalOverlay">
+<div  class="sketchViewer">
+<div class="closeViewer" ng-click=" closeSketchViewer() "></div>
+<div ng-show=" sketchImageIsProcessing " class="isProcessing">
+<p>
+<img src="assets/apps/share/img/draw.png"/><br/>
+This sketch is currently being processed.<br/>
+<span class="sub">It'll be available shortly!</span>
+</p>
+</div>
+<!-- Non-Temporaray sketches here -->
+<div ng-if=" !sketchViewerSketchIsTemp " class="imageContainer">
+<img ng-src="/api/comments/{{sketchViewerSketch.commentID}}/sketch/{{sketchViewerSketch.id}}"
+inv-console-sketch-viewer-image
+ng-style="{	width: screen.width * screen.displayScale + 'px',
+height: screen.height * screen.displayScale + 'px'
+}"/>
+</div>
+<!-- Temporary sketches here -->
+<div ng-if=" sketchViewerSketchIsTemp " class="imageContainer">
+<img 	ng-src="{{ screen.imageUrl }}"
+ng-style="{	width: screen.width * screen.displayScale + 'px',
+height: screen.height * screen.displayScale + 'px'
+}" />
+<div class="whiteOverlay" ng-style="{ opacity : sketchViewerSketch.opacity }"></div>
+<div class="tempSketchOverlay" ng-bind-html=" sketchViewerSketch.svg ">
+</div>
+</div>
+</div>
+</div>
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/directives/share-sketch-builder.htm"><div id="shareSketchBuilder">
+<div id="builderWindow">
+<div id="sketchToolbar">
+<div class="whiteboard_tools">
+<a ng-click="setWhiteboardOpacity(0, 'none')" id="whiteboard_none" class="whiteboard_tool none overlay" ng-class="{ active: whiteboardSelected == 'none'}"><span>Transparent</span></a>
+<a ng-click="setWhiteboardOpacity(.7, 'half')" id="whiteboard_half" class="whiteboard_tool half overlay" ng-class="{ active: whiteboardSelected == 'half'}"><span>50%</span></a>
+<a ng-click="setWhiteboardOpacity(1, 'full')" id="whiteboard_full" class="whiteboard_tool full overlay" ng-class="{ active: whiteboardSelected == 'full'}"><span>100%</span></a>
+</div> <!-- whiteboard_tools -->
+<div class="tools">
+<a id="pencil" class="sketch_tool pencil">
+<i class="tool_icon tool_pencil"></i>
+</a>
+<a id="rect" class="sketch_tool square">
+<i class="tool_icon tool_square"></i>
+</a>
+<a id="circle" class="sketch_tool circle">
+<i class="tool_icon tool_circle"></i>
+</a>
+<a id="line" class="sketch_tool line">
+<i class="tool_icon tool_line"></i>
+</a>
+<!--
+<a id="arrow" class="sketch_tool arrow">
+<i class="tool_icon tool_arrow"></i>
+</a>
+-->
+<a id="text" class="sketch_tool text">
+<i class="tool_icon tool_text"></i>
+</a>
+<a id="move" class="sketch_tool move">
+<i class="tool_icon tool_move"></i>
+</a>
+<div class="actions_toolbar">
+<a id="undo" rel="tooltip" data-placement="bottom" title="Undo action" class="sketch_action undo inactive">
+<i class="tool_icon tool_undo"></i>
+</a>
+<a id="redo" rel="tooltip" data-placement="bottom" title="Redo action" class="sketch_action redo inactive">
+<i class="tool_icon tool_redo"></i>
+</a>
+<a id="delete" rel="tooltip"  data-placement="bottom" title="Remove element" class="sketch_action delete inactive">
+<i class="tool_icon tool_delete"></i>
+</a>
+</div>
+</div>
+<div class="sketch_btns">
+<a ng-click=" hideSketchBuilder() " class="btn cancel">Cancel</a>
+<a ng-click=" saveSketch() " class="btn save">I'm Done</a>
+</div>
+</div>
+<div class="scroll-wrap">
+<div class="sketchImage_wrapper">
+<img  
+ng-src="{{ screen.imageUrl }}"
+ng-style="{ width: screen.width * screen.displayScale + 'px',
+height: screen.height * screen.displayScale + 'px'}"
+class="sketch_image"
+/>
+</div>
+<div id="whiteboard_overlay" ng-class="whiteboardSelected"></div>
+</div> <!-- scroll-wrap -->
+</div> <!-- end builderWindow -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/directives/toggle.htm">
+<div class="m-toggle off">	
+<!-- BEGIN: Labels Track. -->
+<div class="toggle-labels-track">
+<div class="toggle-labels">
+<div class="toggle-label on">
+<span class="text">On</span>
+</div>
+<div class="toggle-label off">
+<span class="text">Off</span>
+</div>
+</div>
+</div>
+<!-- END: Labels Track. -->
+<!-- BEGIN: Thumb Track. -->
+<div class="toggle-thumb-track">
+<a href="" class="toggle-thumb">
+<span class="toggle-end">
+<br />
+</span>
+</a>
+</div>
+<!-- END: Thumb Track. -->
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/share-lite/share-bar.htm"><div id="share_bar" ng-controller="toolbar.ToolbarController">
+<a class="icon" href="{{HomeURI}}">InVision App</a>
+<h2>{{ displayFilename }}</h2>
+<div class="copied">Link copied to clipboard</div>
+<ul>
+<li><a ng-click="toggleShareModal()">Share</a></li>
+<li><a ng-href="/api/snaps/download/{{share.key}}">Download</a></li>
+<li class="feedback"><a ng-click="isShowingComments = !isShowingComments">Comment <span>{{ commentCount }}</span></a></li>
+</ul>
+<div class="share-modal" ng-show="isShowingShareModal">
+<h2>Share link to <strong>{{ displayFilename }}</strong></h2>
+<form inv-copy-to-clipboard>
+<input type="text" name="copy" id="share_link" value="{{share.shareUrl}}{{share.key}}" />
+<div class="button-container">
+<button name="copy" data-clipboard-text="{{share.shareUrl}}{{share.key}}">Copy Link</button>
+</div> <!-- button-container -->
+</form>
+<a ng-click="toggleShareModal()" class="close">Close</a>
+</div> <!-- share-modal -->
+</div> <!-- share_bar --></script><script type="text/ng-template" id="/assets/apps/share/views/share-lite/comment-bar.htm"><div id="comments_bar" ng-controller="toolbar.ToolbarController">
+<h2>Click anywhere on the image to leave a comment</h2>
+<p class="close"><a ng-click="isShowingComments = !isShowingComments">Close</a></p>
+</div> <!-- share_bar --></script><script type="text/ng-template" id="/assets/apps/share/views/layouts/modal.htm"><div ng-controller="layouts.ModalController" class="l-modal">
+<div ng-if="subview == 'error'" ng-include=" '/assets/apps/share/views/modal/error.htm' "></div>
+<div ng-if="subview == 'shareTour'" ng-include=" '/assets/apps/share/views/modal/share-tour.htm' "></div>
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/preview/tour-point-form.htm"><form
+ng-controller="comments.FormController"
+ng-submit="submitForm()"
+inv-comments-tour-form-key-combos
+inv-tour-comments-form
+class="conversation comment-thread-container tour-point-form">
+<div class="comment-thread tour-point">
+<header>
+<button
+class="close"
+type="button"
+ng-click="clearTourPointForm()">
+&times;
+</button>
+</header>
+<section class="primary-comment">
+<div class="m-avatar" ng-class="{ 'system-avatar': comments[0].userHasSystemAvatar }">
+<span class="rendering">{{ comments[0].userInitials }}</span>
+<img
+ng-if=" ! comments[0].userHasSystemAvatar "
+ng-src="/avatars/{{ comments[0].userAvatarID }}"
+class="rendering" />
+</div>
+<div class="post-content">
+<div
+class="post-comment"
+ng-bind-html="comments[0].html">
+</div>
+</div>
+<footer ng-if=" ! commentsExpanded ">
+<div
+ng-click="toggleCommentsExpanded()"
+ng-class="{ 'no-comments': comments.length == 1 }"
+class="reply-section">
+Reply <span ng-if="comments.length > 1" class="comment-count">{{ comments.length - 1 }}</span>
+</div>
+<nav class="tour-point-nav">
+<a
+ng-click="previousTourPoint()"
+ng-show="hasPreviousTourPoint()"
+class="prev">Prev</a>
+<a
+ng-click="nextTourPoint()"
+ng-show="hasNextTourPoint()"
+class="next">Next</a>
+</nav>
+</footer>
+</section>
+<div
+ng-if=" comments.length > 1 && commentsExpanded "
+class="reply-counter"
+ng-pluralize
+count=" comments.length - 1 "
+when="{
+'0': '0 Replies',
+'one': '1 Reply',
+'other': '{} Replies'
+}">
+</div>
+<section
+class="comments-expanded"
+ng-class="{
+visible: !! commentsExpanded
+}">
+<div class="comments-expanded-inner">
+<!-- BEGIN: Comments. -->
+<div
+ng-repeat="comment in comments"
+ng-init=" showDeleteCommentConfirmation = false ; "
+class="comment-item comment"
+ng-class="{
+first: $first,
+unread: comment.isUnread,
+collapsed: comment.isCollapsed,
+'first-collapsed': comment.isFirstCollapsed,
+last: $last
+}"
+inv-fade-show="!comment.isCollapsed || ( comment.isCollapsed && comment.isFirstCollapsed )">
+<span ng-if=" ! $first ">
+<!-- Special section for collapsed area -->
+<div ng-if=" comment.isCollapsed " class="collapsed-comments">
+<span ng-click="expandComments( )">View All {{ comments.length }} Comments</span>
+</div>
+<div class="m-avatar" ng-class="{ 'system-avatar': comment.userHasSystemAvatar }">
+<span class="rendering">{{ comment.userInitials }}</span>
+<img
+ng-if=" ! comment.userHasSystemAvatar "
+ng-src="/avatars/{{ comment.userAvatarID }}"
+class="rendering" />
+<!-- Status -->
+<span
+class="online-status"
+ng-class="{ online: ( comment.userOnlineStatus == 'Online' ), away: ( comment.userOnlineStatus == 'Away' ) }">
+{{ comment.userOnlineStatus }}
+</span>
+</div>
+<div class="post-content post-emojis">
+<h2 ng-hide="$first && conversation.isTourPoint">
+<span>{{ comment.userName }}</span>
+<span class="created-at">{{ comment.dateLabel }}</span>
+</h2>
+<div class="post-options" ng-show=" !comment.isEditing ">
+<ul class="tools">
+<li
+class="view-history hidden"
+ng-show="( ! comment.isEditing && ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<a>View History</a>
+</li>
+<li
+class="edit-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="editComment( comment )"
+inv-tooltip="Edit comment">
+Edit
+</a>
+</li>
+<li
+class="delete-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="showDeleteConfirmation( comment, $first )"
+inv-tooltip="Delete comment">
+Delete
+</a>
+</li>
+</ul>
+<div inv-history-overlay class="history-overlay" ng-if="( ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<div class="history-overlay-image-container">
+<img 	inv-screen-version-image-scaler
+ng-src="{{ comment.imageUrl }}"
+ng-style="{
+top: - ( ( conversation.y * screen.displayScale ) - 130 ) + 'px',
+left: - ( ( conversation.x * screen.displayScale ) - 270 )+ 'px'
+}" />
+</div>
+<div class="hover-buffer"></div>
+</div> <!-- history-overlay -->
+</div> <!-- post-options -->
+<a class="thumbs-up"
+ng-show=" canLike "
+ng-hide=" $first && conversation.isTourPoint "
+ng-class="{ 'liked': comment.numberOfLikes, 'by-user': comment.hasUserLiked  }"
+ng-click="toggleLike( comment )"
+inv-tooltip="{{ comment.likedByList }}">
+<i class="icon thumbs up"></i>
+{{comment.numberOfLikes}}
+</a>
+<div
+ng-show="! comment.isEditing"
+ng-bind-html="comment.html"
+class="post-comment">
+</div>
+<div ng-if="comment.isEditing" class="editing-mode">
+<div
+inv-emoji-typeahead
+model="comment.comment"
+target="comment">
+</div>
+<textarea
+inv-autofocus
+inv-autosize
+ng-model="comment.comment"
+tabindex="101"
+class="existing"></textarea>
+</div>
+<div
+class="sketchList"
+ng-show="comment.sketches.length > 0 && ( ! $first || ! conversation.isTourPoint )">
+<div
+ng-repeat="sketch in comment.sketches"
+class="sketch">
+<a
+class="text"
+ng-click=" startSketchViewer( sketch , false, conversation ) "
+ng-class="{
+editing: comment.isEditing
+}">
+<strong>{{ comment.userFirstName }}&rsquo;s attached a sketch.</strong> View?
+<span inv-tooltip="delete" class="delete" ng-show="comment.isEditing" ng-click=" deleteSketch( sketch.id )">x</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div class="editing-mode" ng-show="comment.isEditing">
+<div inv-emoji-add target="comment"></div>
+</div>
+<div class="post-buttons" ng-show="( comment.isEditing )">
+<button
+type="button"
+class="save"
+ng-show="comment.isEditing"
+tabindex="102"
+ng-click="saveComment( comment, false )">
+Save
+</button>
+<button
+type="button"
+class="cancel"
+ng-show="comment.isEditing"
+tabindex="103"
+ng-click="cancelCommentEdit( comment )">
+Cancel
+</button>
+</div>
+</div> <!-- post-content -->
+<!-- Delete confirmation for single comment. -->
+<div inv-fade-show="comment.isDeleting" class="delete-confirmation">
+<p>Delete this comment?</p>
+<div class="action">
+<a ng-click="deleteComment( comment )" class="confirm">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation( comment )" class="cancel">Cancel</a>
+</div>
+</div>
+</span>
+</div>
+<!-- END: Comments. -->
+<div class="comment-item post-new-comment">
+<div class="post post-emojis">
+<div 
+class="post-comment"
+ng-class="{ 'has-sketch': tempSketches.length > 0 }">
+<div 
+inv-emoji-typeahead
+model="newComment">
+</div>
+<textarea
+inv-autosize
+name="post-comment"
+ng-model="newComment"
+tabindex="201"
+placeholder="Leave a comment..."
+inv-focus="showCommentInput()"
+ng-class="{
+'has-sketch': tempSketches.length > 0,
+open: isCommentInputVisible
+}"></textarea>
+<div class="sketchList" ng-show="tempSketches.length > 0">
+<div ng-repeat="sketch in tempSketches" class="sketch">
+<a ng-click=" startSketchViewer( sketch , true, conversation ) ">
+<strong>Your sketch is attached.</strong> View?
+<span class="delete" inv-tooltip="delete" ng-click=" deleteTempSketch(sketch.tempID) ">
+&times;
+</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div
+class="add-sketch"
+ng-show="tempSketches.length == 0 && isCommentInputVisible && ( ! conversation.isTourPoint || ! comments.length == 0 )">
+<a ng-click=" startSketchBuilder() " inv-tooltip="Attach a sketch"></a>
+</div>
+<div inv-emoji-add></div>
+</div> <!-- post-comment -->
+</div> <!-- post -->
+</div>
+<div ng-show="isCommentInputVisible">
+<div class="comment-item notify">
+<div class="notify-top">
+<p>
+<span
+inv-notify-text
+names="{{ getUsersToBeNotified() }}"
+others="{{ getNotifyCount() }}"></span>
+<a ng-click="toggleUserList()" class="toggle">
+<span ng-hide="isShowingUserList">(change)</span>
+<span ng-show="isShowingUserList">(hide)</span>
+</a>
+</p>
+</div> <!-- notify-top -->
+<div
+class="notify_drop"
+ng-class="{
+closed: ! isShowingUserList,
+open: isShowingUserList
+}">
+<div
+ng-show="isShowingUserList"
+class="user-lists"
+ng-class="{ 'members-only': isInternalConversation }">
+<div class="notify_all" ng-show="members.length || affiliates.length">
+<div class="notify_all_team">
+<div class="checker">
+<span
+ng-class="{
+'checked': getNotifyCount() > 0,
+'partial': getNotifyCount() > 0 && getNotifyCount() < ( members.length + affiliates.length )
+}">
+<input
+type="checkbox"
+ng-click="toggleNotifyOption()" />
+</span>
+</div> <!-- checker -->
+<div class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle">
+{{notifyOptionSelected}}
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<li><a ng-click="selectAll()">All</a></li>
+<li><a ng-click="selectCollaborators()">Collaborators</a></li>
+</ul>
+</div> <!-- dropdown -->
+</div> <!-- notify_all_team -->
+</div> <!-- notify_all -->
+<ul class="notify_person_list">
+<li ng-repeat="user in members">
+<label ng-class="{ 'checked': user.isSelected }" ng-show="user.id != shareUser.id">
+<input type="checkbox" ng-model="user.isSelected" ng-click="toggleUserSelection( user )" inv-uniform>
+<strong>{{ user.name }}</strong>
+<span ng-show="isTeamMember">(Collaborator)</span>
+</label>
+</li>
+</ul>
+<ul class="notify_person_list" ng-show="isStakeholdersShowing()">
+<li ng-repeat="user in affiliates">
+<label ng-class="{ 'checked': user.isSelected }"  ng-show="user.id != shareUser.id">
+<input type="checkbox" ng-model="user.isSelected" ng-click="toggleUserSelection( user )" inv-uniform>
+<strong>{{ user.name }}</strong>
+<a class="remove-stakeholder" ng-show="isTeamMember" inv-confirm-popover="Remove forever?" on-confirm="removeStakeholder( user )"><img src="assets/apps/common/img/delete.png" /></a>
+</label>
+</li>
+</ul>
+</div>
+<div ng-show="( isShowingUserList && ! isInternalConversation )">
+<span ng-hide="showNotifyOthers == true" class="add-emails">
+<a ng-click="showNotifyOthers = true">
+Add others to the conversation&hellip;
+</a>
+</span>
+<div class="add-emails-input" ng-show="showNotifyOthers">
+<input type="text"
+ng-model="emailAddresses"
+id="notify_others"
+placeholder="Add others via email (separated by comma)">
+</div>
+</div>
+</div> <!-- notify_drop -->
+</div> <!-- comment-item notify -->
+<div class="error-message" ng-show="hasUnauthorizedEmail">
+<p>The administrator of the {{ enterpriseConfig.name }} InVision account has disabled sharing to users outside of the account.</p>
+</div>
+<div class="comment-item footer submit">
+<button
+class="button"
+tabindex="202"
+type="submit"
+inv-success-button
+after-success="onReplyFinished()"
+delay="0">Reply</button>
+<button class="close" type="button" ng-click="toggleCommentsExpanded()">cancel</button>
+</div> <!-- footer -->
+</div> <!-- isCommentInputVisible toggle -->
+<!-- Delete confirmation for entire conversation. -->
+<div inv-fade-show="isDeleting" class="delete-confirmation delete-conversation">
+<p>Delete this <strong>entire</strong> conversation?</p>
+<div class="action">
+<a ng-click="deleteConversation( conversation )" class="btn btn-small flat dkgray">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation()" class="cancel">Cancel</a>
+</div>
+</div>
+<div inv-fade-show="isIdentifying" class="overlay identification">
+<div class="form">
+<h2>Please Identify Yourself</h2>
+<p>In order to participate, we need to know who you are.</p>
+<div ng-show="errorMessage" class="alert alert-error">
+<strong>Oops</strong>: {{ errorMessage }}
+</div>
+<div class="field">
+<label>Name:</label>
+<input type="text" ng-model="identity.name" inv-autofocus tabindex="301" placeholder="Name" />
+</div>
+<div class="field">
+<label>Email:</label>
+<input type="text" ng-model="identity.email" tabindex="302" placeholder="Email Address" />
+</div>
+<div class="actions">
+<button class="button" type="submit" tabindex="303">Reply</button>
+<button class="close" type="button" ng-click="selectTourPoint(null)">cancel</button>
+</div>
+</div> <!-- form -->
+</div> <!-- identification -->
+<!-- This adds bototm-margin to the form so the page will scroll adequately. -->
+<div class="bottom-buffer">
+<br />
+</div>
+</div>
+</section>
+</div> <!-- comment-thread-container -->
+</form>
+</script><script type="text/ng-template" id="/assets/apps/share/views/preview/preview-tour-comments.htm"><div ng-if=" ! isLiveShare " ng-controller="preview.TourCommentsController">
+<div ng-if=" tourPoints.length > 0 " ng-controller="comments.CommentsController">
+<div
+inv-comments-markers
+ng-controller="comments.MarkersController">
+<div
+ng-if=" tooltipTourPoint "
+class="tour-point-tooltip left"
+ng-class=" tooltipClass() "
+ng-mouseenter=" clearTooltipTimeout() "
+ng-mouseleave=" clearTooltipTourPoint() "
+ng-click=" selectTourPoint(tooltipTourPoint) "
+inv-tour-point-tooltip>
+<div class="m-avatar" ng-class="{ 'system-avatar': tooltipTourPoint.comment.userHasSystemAvatar }">
+<span class="rendering">{{ tooltipTourPoint.comment.userInitials }}</span>
+<img
+ng-if=" ! tooltipTourPoint.comment.userHasSystemAvatar "
+ng-src="/avatars/{{ tooltipTourPoint.comment.userAvatarID }}"
+class="rendering" />
+</div>
+<div class="excerpt" ng-bind-html="tooltipExcerpt()"></div>
+</div>
+<!-- Only include the form if a tour point has been selected.-->
+<div
+class="comments-original"
+ng-if="selectedConversation && !settings.features.mentions"
+ng-include=" '/assets/apps/share/views/preview/tour-point-form.htm' ">
+</div><!-- delete this div after mentions are enabled across all users -->
+<div
+class="comments-mentions"
+ng-if="selectedConversation && settings.features.mentions"
+ng-include=" '/assets/apps/share/views/preview/tour-point-form-mentions.htm' ">
+</div>
+<!--  View controlled by switch to overlay everything -->
+<div inv-share-sketch-builder
+ng-if=" isShowingSketchBuilder " >
+</div>
+<!-- Sketch viewer modal-->
+<div inv-share-sketch-viewer
+ng-if=" isShowingSketchViewer ">
+</div>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/preview/tour-point-form-mentions.htm"><form
+ng-controller="comments.FormController"
+ng-submit="submitForm()"
+inv-comments-tour-form-key-combos
+inv-tour-comments-form
+class="conversation comment-thread-container tour-point-form">
+<div class="comment-thread tour-point">
+<header>
+<button
+class="close"
+type="button"
+ng-click="clearTourPointForm()">
+&times;
+</button>
+</header>
+<section class="primary-comment">
+<div class="m-avatar" ng-class="{ 'system-avatar': comments[0].userHasSystemAvatar }">
+<span class="rendering">{{ comments[0].userInitials }}</span>
+<img
+ng-if=" ! comments[0].userHasSystemAvatar "
+ng-src="/avatars/{{ comments[0].userAvatarID }}"
+class="rendering" />
+</div>
+<div class="post-content">
+<div
+class="post-comment"
+ng-bind-html="comments[0].html">
+</div>
+</div>
+<footer ng-if=" ! commentsExpanded ">
+<div
+ng-click="toggleCommentsExpanded()"
+ng-class="{ 'no-comments': comments.length == 1 }"
+class="reply-section">
+Reply <span ng-if="comments.length > 1" class="comment-count">{{ comments.length - 1 }}</span>
+</div>
+<nav class="tour-point-nav">
+<a
+ng-click="previousTourPoint()"
+ng-show="hasPreviousTourPoint()"
+class="prev">Prev
+</a>
+<a
+ng-click="nextTourPoint()"
+ng-show="hasNextTourPoint()"
+class="next">Next
+</a>
+</nav>
+</footer>
+</section>
+<section
+class="comments-expanded"
+ng-class="{
+visible: !! commentsExpanded}">
+<div class="comments-expanded-inner">
+<!-- BEGIN: Comments. -->
+<div
+ng-repeat="comment in comments"
+ng-init=" showDeleteCommentConfirmation = false ; "
+class="comment-item comment"
+ng-class="{
+first: $first,
+unread: comment.isUnread,
+collapsed: comment.isCollapsed,
+'first-collapsed': comment.isFirstCollapsed,
+last: $last
+}"
+inv-fade-show="!comment.isCollapsed || ( comment.isCollapsed && comment.isFirstCollapsed )">
+<span ng-if=" ! $first ">
+<!-- Special section for collapsed area -->
+<div ng-if=" comment.isCollapsed " class="collapsed-comments">
+<span ng-click="expandComments( )">View All {{ comments.length }} Comments</span>
+</div>
+<div class="m-avatar" ng-class="{ 'system-avatar': comment.userHasSystemAvatar }">
+<span class="rendering">{{ comment.userInitials }}</span>
+<img
+ng-if=" ! comment.userHasSystemAvatar "
+ng-src="/avatars/{{ comment.userAvatarID }}"
+class="rendering" />
+<!-- Status -->
+<span
+class="online-status"
+ng-class="{ online: ( comment.userOnlineStatus == 'Online' ), away: ( comment.userOnlineStatus == 'Away' ) }">
+{{ comment.userOnlineStatus }}
+</span>
+</div>
+<div class="post-content post-emojis">
+<h2 ng-hide="$first && conversation.isTourPoint">
+<span>{{ comment.userName }}</span>
+<span class="created-at">{{ comment.dateLabel }}</span>
+</h2>
+<div class="post-options" ng-show=" !comment.isEditing ">
+<ul class="tools">
+<li
+class="view-history hidden"
+ng-show="( ! comment.isEditing && ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<a>View History</a>
+</li>
+<li
+class="edit-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="editComment( comment )"
+inv-tooltip="Edit comment">
+Edit
+</a>
+</li>
+<li
+class="delete-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="showDeleteConfirmation( comment, $first )"
+inv-tooltip="Delete comment">
+Delete
+</a>
+</li>
+</ul>
+<div inv-history-overlay class="history-overlay" ng-if="( ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<div class="history-overlay-image-container">
+<img 	inv-screen-version-image-scaler
+ng-src="{{ comment.imageUrl }}"
+ng-style="{
+top: - ( ( conversation.y * screen.displayScale ) - 130 ) + 'px',
+left: - ( ( conversation.x * screen.displayScale ) - 270 )+ 'px'
+}" />
+</div>
+<div class="hover-buffer"></div>
+</div> <!-- history-overlay -->
+</div> <!-- post-options -->
+<a class="thumbs-up"
+ng-show=" canLike "
+ng-hide=" $first && conversation.isTourPoint "
+ng-class="{ 'liked': comment.numberOfLikes, 'by-user': comment.hasUserLiked  }"
+ng-click="toggleLike( comment )"
+inv-tooltip="{{ comment.likedByList }}">
+<i class="icon thumbs up"></i>
+{{comment.numberOfLikes}}
+</a>
+<div
+ng-show="! comment.isEditing"
+ng-bind-html="comment.html"
+class="post-comment">
+</div>
+<div ng-if="comment.isEditing" class="editing-mode">
+<div 
+inv-comment
+comment="comment.comment"
+name="post-comment"
+screen-id="screen.id"
+class-string="{{ getClassesString('existing') }}"
+tab-index="101"
+has-emojis="true"
+has-who-is-notified="false">
+</div>
+</div>
+<div
+class="sketchList"
+ng-show="comment.sketches.length > 0 && ( ! $first || ! conversation.isTourPoint )">
+<div
+ng-repeat="sketch in comment.sketches"
+class="sketch">
+<a
+class="text"
+ng-click=" startSketchViewer( sketch , false, conversation ) "
+ng-class="{
+editing: comment.isEditing
+}">
+<strong>{{ comment.userFirstName }}&rsquo;s attached a sketch.</strong> View?
+<span inv-tooltip="delete" class="delete" ng-show="comment.isEditing" ng-click=" deleteSketch( sketch.id )">x</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div class="post-buttons" ng-show="( comment.isEditing )">
+<button
+type="button"
+class="save"
+ng-show="comment.isEditing"
+tabindex="102"
+ng-click="saveComment( comment, false )">
+Save
+</button>
+<button
+type="button"
+class="cancel"
+ng-show="comment.isEditing"
+tabindex="103"
+ng-click="cancelCommentEdit( comment )">
+Cancel
+</button>
+</div>
+</div> <!-- post-content -->
+<!-- Delete confirmation for single comment. -->
+<div inv-fade-show="comment.isDeleting" class="delete-confirmation">
+<p>Delete this comment?</p>
+<div class="action">
+<a ng-click="deleteComment( comment )" class="confirm">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation( comment )" class="cancel">Cancel</a>
+</div>
+</div>
+</span>
+</div>
+<!-- END: Comments. -->
+<div class="comment-item post-new-comment">
+<div class="post post-emojis">
+<div 
+class="post-comment"
+ng-class="{ 'has-sketch': tempSketches.length > 0 }">
+<div 
+inv-comment
+comment="newComment"
+name="post-comment"
+screen-id="screen.id"
+class-string="{{ getClassesString('existing') }}"
+placeholder="Leave a comment..."
+tab-index="201"
+on-focus-callback="showCommentInput()"
+has-emojis="true"
+has-who-is-notified="true">
+</div>
+<div class="error-message" ng-show="hasUnauthorizedEmail">
+<p>The administrator of the {{ enterpriseConfig.name }} InVision account has disabled sharing to users outside of the account.</p>
+</div>
+<div class="comment-item footer submit actions">
+<button
+class="button"
+tabindex="202"
+type="submit"
+inv-success-button
+after-success="onReplyFinished()"
+delay="0">Reply</button>
+<button class="close" type="button" ng-click="toggleCommentsExpanded()">cancel</button>
+</div> <!-- footer -->
+<div class="sketchList" ng-show="tempSketches.length > 0">
+<div ng-repeat="sketch in tempSketches" class="sketch new-sketch">
+<a ng-click=" startSketchViewer( sketch , true, conversation ) ">
+<strong>Your sketch is attached.</strong> View?
+<span class="delete" inv-tooltip="delete" ng-click=" deleteTempSketch(sketch.tempID) ">
+&times;
+</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div
+class="add-sketch"
+ng-show="tempSketches.length == 0 && isCommentInputVisible && ( ! conversation.isTourPoint || ! comments.length == 0 )">
+<a ng-click=" startSketchBuilder() " inv-tooltip="Attach a sketch"></a>
+</div>
+</div> <!-- post-comment -->
+</div> <!-- post -->
+</div> 
+<!-- Delete confirmation for entire conversation. -->
+<div inv-fade-show="isDeleting" class="delete-confirmation delete-conversation">
+<p>Delete this <strong>entire</strong> conversation?</p>
+<div class="action">
+<a ng-click="deleteConversation( conversation )" class="btn btn-small flat dkgray">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation()" class="cancel">Cancel</a>
+</div>
+</div>
+<div inv-fade-show="isIdentifying" class="overlay identification">
+<div class="form">
+<h2>Please Identify Yourself</h2>
+<p>In order to participate, we need to know who you are.</p>
+<div ng-show="errorMessage" class="alert alert-error">
+<strong>Oops</strong>: {{ errorMessage }}
+</div>
+<div class="field">
+<label>Name:</label>
+<input type="text" ng-model="identity.name" inv-autofocus tabindex="301" placeholder="Name" />
+</div>
+<div class="field">
+<label>Email:</label>
+<input type="text" ng-model="identity.email" tabindex="302" placeholder="Email Address" />
+</div>
+<div class="actions">
+<button class="button" type="submit" tabindex="303">Reply</button>
+<button class="close" type="button" ng-click="selectTourPoint(null)">cancel</button>
+</div>
+</div> <!-- form -->
+</div> <!-- identification -->
+<!-- This adds bototm-margin to the form so the page will scroll adequately. -->
+<div class="bottom-buffer">
+<br />
+</div>
+</div>
+</section>
+</div> <!-- comment-thread-container -->
+</form>
+</script><script type="text/ng-template" id="/assets/apps/share/views/preview/browser-compatibility.htm"><a ng-click="closeBrowserCompatibilityAlert()" class="browser-overlay">
+<br />
+</a>
+<div class="browser-alert">
+<a ng-click="closeBrowserCompatibilityAlert()" class="close-alert">x</a>
+<h1>
+We're sorry, your browser isn't fully supported to display this content properly.
+</h1>
+<div ng-switch="browserCompatibility.reason">
+<p ng-switch-when="version">
+We encourage you to <a href="http://browsehappy.com" target="updateBrowser">upgrade to a modern web browser</a>.
+</p>
+<p ng-switch-when="mode">
+Looks like you're running in &quot;compatibility mode&quot;, simply follow these
+<a href="https://www.youtube.com/results?search_query=ie+turn+off+compatibility+mode" target="updateBrowser">instructions to switch back to &quot;normal view&quot;</a>.
+</p>
+</div>
+<a ng-click="closeBrowserCompatibilityAlert()" class="no-thanks">
+No thanks, continue...
+</a>
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/preview/tour-point.htm"><span 
+inv-tour-point
+ng-hide=" !isTourPointVisible( tourPoint.section ) "
+class="point" 
+data-tour-point-id="{{ tourPoint.id }}"
+>
+{{ tourPoint.label }}
+</span></script><script type="text/ng-template" id="/assets/apps/share/views/preview/preview.htm"><div
+ng-controller="preview.PreviewController"
+inv-preview-helper
+class="m-preview {{ screen.alignment }}"
+ng-class="{ mobile: project.isMobile, 'is-watch': project.isWatch }"
+ng-hide="!isLiveShare && project.isSnap">
+<div
+ng-if="project.isMobile"
+inv-mobile-transition-layer
+id="mobile_transition_layer"
+class="{{ deviceTemplate.className }} {{ chromeClass }}"></div>
+<inv-share-screen-viewer></inv-share-screen-viewer>
+<div class="slideshow-nav">
+<div class="slideshow-status" ng-show=" ! project.isMobile " >{{ currentScreenIndex }} of {{ screenCount }}</div>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/comments/context.htm"><!-- BEGIN: Context. -->
+<div class="context">
+<a ng-href="#/screens/{{ screenID }}">
+<span ng-show=" !isLiveShare ">Comment Mode</span>
+<span ng-show=" isLiveShare ">Your LiveShare experience is paused while in Comment Mode</span>
+</a>
+<!-- Borders. -->
+<div class="border n"></div>
+<div class="border e"></div>
+<div class="border s"></div>
+<div class="border w"></div>
+</div>
+<!-- END: Context. --></script><script type="text/ng-template" id="/assets/apps/share/views/comments/catchup-toolbar.htm"><div ng-controller="comments.CatchupToolbarController" inv-comments-catchup-toolbar-helper class="comments-catchup-toolbar">
+<div class="markers-container" class="{ unread-comments: unreadConversations.length, no-unread-comments: !unreadConversations.length }">
+<p ng-show="unreadConversations.length">
+{{ unreadConversations.length }} unread
+<span ng-pluralize count="unreadConversations.length" when="{ one: 'conversation', other: 'conversations' }"></span>:
+</p>
+<p ng-hide="unreadConversations.length">No unread comments on this page...</p>
+<!-- unread markers -->
+<div class="markers" ng-show="unreadConversations.length">
+<a
+ng-repeat="conversation in visibleUnreadConversations"
+href="#/screens/{{ screenID }}/comments/{{ conversation.id }}"
+class="marker"
+ng-click="markCommentsAsRead( conversation )"
+ng-class="{
+complete: conversation.isComplete,
+comment: ! conversation.isForDevelopment && ! conversation.isTourPoint && ! conversation.isPrivate,
+'dev-note': conversation.isForDevelopment,
+'tour-point': conversation.isTourPoint,
+'private-comment': conversation.isPrivate && ! conversation.isForDevelopment,
+read: ! conversation.isUnread
+}">
+<span ng-if="conversation.label != '' && conversation.label > 0">{{ conversation.label }}</span>
+</a>
+</div>
+<div ng-show="hiddenUnreadConversations.length" class="overflow-count">
++ {{ hiddenUnreadConversations.length }} more
+</div>
+</div> <!-- markers-container -->
+<!-- BEGIN: Filters. -->
+<div class="filters">
+<p>View:</p>
+<div class="type-filter">
+<div class="dropdown">
+<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+<span class="text">{{ filters.type.label }} ({{ filters.type.count }})</span>
+<span class="drop"></span>
+</a>
+<ul class="dropdown-menu">
+<li ng-repeat="option in typeFilterOptions" ng-hide="option.isPrivate && !user.canViewPrivateComments">
+<a ng-click="changeTypeFilter( option )">{{ option.label }} ({{ option.count }})</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="status-filter">
+<label for="filterShowCompleted">
+<input type="checkbox" id="filterShowCompleted" ng-model="filters.showCompleted.value" ng-change="changeShowCompletedFilter()" inv-uniform />
+Show Resolved ({{ filters.showCompleted.count }})
+</label>
+</div>
+</div>
+<!-- END: Filters. -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/comments/form-mentions.htm"><form
+ng-controller="comments.FormController"
+inv-comments-form-key-combos
+inv-comments-form
+class="conversation comment-thread-container mentions emoji-root"
+ng-class="{ teaser: ( isShowingTeaser && !tempSketches.length ) }"
+ng-style="{
+left: ( conversation.x * screen.displayScale + 'px' ),
+top: ( ( conversation.y * screen.displayScale ) + 9 + 'px' )
+}">
+<div class="emoji-placeholder"></div>
+<div
+class="comment-thread"
+ng-class="{
+comment: ! conversation.isForDevelopment && ! conversation.isTourPoint && ! conversation.isPrivate,
+'dev-note': conversation.isForDevelopment,
+'tour-point': conversation.isTourPoint,
+'private-comment': conversation.isPrivate
+}">
+<header>
+<span ng-hide=" conversation.id == 0 ">
+<input
+id="conversationIsComplete"
+type="checkbox"
+ng-model="conversation.isComplete"
+ng-change="updateConversationStatus( conversation )"
+ng-disabled="( conversation.id == 0 )"
+inv-uniform
+/>
+</span>
+<div
+class="dropdown type-dropdown"
+ng-class="{ saved: !! conversation.id }"
+ng-show="showInternalOptions && !project.isSnap">
+<a data-toggle="dropdown" class="dropdown-toggle" ng-hide="!! conversation.id">
+<span class="text pink" ng-show="!conversation.isForDevelopment && !conversation.isPrivate && !conversation.isTourPoint">
+<span class="dot"></span>
+<span>Leave a Comment</span>
+</span>
+<span class="text grey" ng-show="!conversation.isForDevelopment && conversation.isPrivate">
+<span class="dot"></span>
+<span>Private Comment</span>
+</span>
+<span class="text purple" ng-show="conversation.isForDevelopment">
+<span class="dot"></span>
+<span>Dev Note</span>
+</span>
+<span class="text tour-point" ng-show="conversation.isTourPoint">
+<span class="dot"></span>
+<span>Tour Point</span>
+</span>
+<span class="drop" ng-hide=" !! conversation.id "></span>
+</a>
+<a data-toggle="dropdown" class="dropdown-toggle dots" ng-hide="! conversation.id">
+<span class="small-dot"></span>
+<span class="small-dot"></span>
+<span class="small-dot"></span>
+</a>
+<ul class="dropdown-menu">
+<li>
+<a ng-click="setTypeAsComment()" class="pink">
+<span class="dot"></span> Comment
+</a>
+</li>
+<li ng-hide="!user.canViewPrivateComments">
+<a ng-click="setTypeAsPrivateComment()" class="grey">
+<span class="dot"></span> Private Comment
+</a>
+</li>
+<li ng-hide="!user.canViewPrivateComments">
+<a ng-click="setTypeAsDevNote()" class="purple">
+<span class="dot"></span> Dev Note
+</a>
+</li>
+<li>
+<a ng-click="setTypeAsTourPoint()" class="tour-point">
+<span class="dot"></span> Tour Point
+</a>
+</li>
+</ul>
+</div>
+<span
+class="non-collaborator-label"
+ng-show=" !showInternalOptions && !project.isSnap"
+ng-class="{ saved: !! conversation.id }"
+>
+<span class="dot"></span> Leave a Comment
+</span>
+<button
+class="close"
+type="button"
+ng-click="closeConversation()"
+ng-hide="!! conversation.id ">
+&times;
+</button>
+</header>
+<section class="comment-content">
+<!-- BEGIN: Comments. -->
+<div
+ng-repeat="comment in comments"
+ng-init=" showDeleteCommentConfirmation = false ; "
+class="comment-item comment"
+ng-class="{
+first: $first,
+unread: comment.isUnread,
+collapsed: comment.isCollapsed,
+'first-collapsed': comment.isFirstCollapsed,
+last: $last
+}"
+inv-fade-show="!comment.isCollapsed || ( comment.isCollapsed && comment.isFirstCollapsed )">
+<!-- Special section for collapsed area -->
+<div ng-if=" comment.isCollapsed " class="collapsed-comments">
+<span ng-click="expandComments( )">View Previous Replies</span>
+</div>
+<!-- show new comment indicator -->
+<div 
+ng-if=" $first && conversation.isTourPoint && comments.length > 1 "
+class="new-hrule">
+<span
+ng-pluralize
+count=" comments.length - 1 "
+when="{
+'0': '0 Replies',
+'one': '1 Reply',
+'other': '{} Replies'
+}">
+</span>
+</div>
+<div class="m-avatar" ng-class="{ 'system-avatar': comment.userHasSystemAvatar }">
+<span class="rendering">{{ comment.userInitials }}</span>
+<img ng-src="/avatars/{{ comment.userAvatarID }}" class="rendering" />
+</div>
+<div class="post-content post-emojis">
+<h2 ng-hide="$first && conversation.isTourPoint">
+<span>{{ comment.userName }}</span>
+</h2>
+<div class="post-options"
+ng-show=" !comment.isEditing "
+ng-if=" !comment.isPlaceholder ">
+<a class="thumbs-up"
+ng-if=" !comment.isPlaceholder "
+ng-show=" canLike "
+ng-hide=" $first && conversation.isTourPoint "
+ng-class="{ 'liked': comment.numberOfLikes, 'by-user': comment.hasUserLiked  }"
+ng-click="toggleLike( comment )"
+inv-tooltip="{{ comment.likedByList }}">
+<i class="icon thumbs up"></i>
+{{comment.numberOfLikes}}
+</a>
+<ul class="tools">
+<li
+class="view-history hidden"
+ng-show="( ! comment.isEditing && ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<a>View History</a>
+</li>
+<li
+class="edit-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="editComment( comment )"
+inv-tooltip="Edit comment">
+Edit
+</a>
+</li>
+<li
+class="delete-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="showDeleteConfirmation( comment, $first )"
+inv-tooltip="Delete comment">
+Delete
+</a>
+</li>
+</ul>
+<div inv-history-overlay class="history-overlay" ng-if="( ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<div class="history-overlay-image-container">
+<img    inv-screen-version-image-scaler
+ng-src="{{ comment.imageUrl }}"
+ng-style="{
+top: - ( ( conversation.y * screen.displayScale ) - 130 ) + 'px',
+left: - ( ( conversation.x * screen.displayScale ) - 270 )+ 'px'
+}" />
+</div>
+<div class="hover-buffer"></div>
+</div> <!-- history-overlay -->
+</div> <!-- post-options -->
+<div
+ng-show="! comment.isEditing"
+ng-bind-html="comment.html"
+class="post-comment">
+</div>
+<div ng-if="comment.isEditing" class="editing-mode">
+<div 
+inv-comment
+comment="comment.comment"
+name="post-comment"
+screen-id="screen.id"
+class-string="{{ getClassesString('existing') }}"
+tab-index="101"
+has-emojis="true"
+has-who-is-notified="false">
+</div>
+</div>
+<div
+class="sketchList"
+ng-show="comment.sketches.length > 0 && ( ! $first || ! conversation.isTourPoint )">
+<div
+ng-repeat="sketch in comment.sketches"
+class="sketch">
+<a
+class="text"
+ng-click=" startSketchViewer( sketch , false, conversation ) "
+ng-class="{
+editing: comment.isEditing
+}">
+<strong>{{ comment.userFirstName }}&rsquo;s attached a sketch.</strong> View?
+<span inv-tooltip="delete" class="delete" ng-show="comment.isEditing" ng-click=" deleteSketch( sketch.id )">x</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div class="post-buttons" ng-show="( comment.isEditing )">
+<button
+type="button"
+class="save"
+ng-show="comment.isEditing"
+tabindex="102"
+ng-click="saveComment( comment, false )">
+Save
+</button>
+<button
+type="button"
+class="cancel"
+ng-show="comment.isEditing"
+tabindex="103"
+ng-click="cancelCommentEdit( comment )">
+Cancel
+</button>
+</div>
+</div> <!-- post-content -->
+<!-- Delete confirmation for single comment. -->
+<div inv-fade-show="comment.isDeleting" class="delete-confirmation">
+<p>Delete this comment?</p>
+<div class="action">
+<a ng-click="deleteComment( comment )" class="confirm">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation( comment )" class="cancel">Cancel</a>
+</div>
+</div>
+</div>
+<!-- END: Comments. -->
+</section>
+<div class="comment-item post-new-comment">
+<div
+inv-comment-teaser
+ng-if="isShowingTeaser"
+ng-click="showNewCommentForm()"
+screen-id="screen.id">
+</div>
+<div 
+ng-hide="isShowingTeaser"
+class="post post-emojis"
+>
+<div
+class="post-comment"
+ng-class="{ 'has-sketch': tempSketches.length > 0 }">
+<div 
+inv-comment
+comment="newComment"
+name="post-comment"
+screen-id="screen.id"
+class-string="{{ getClassesString('existing') }}"
+placeholder="Leave a comment..."
+tab-index="201"
+on-focus-callback="showCommentInput()"
+has-emojis="true"
+has-who-is-notified="true">
+</div>
+<div class="error-message" ng-show="hasUnauthorizedEmail">
+<p>The administrator of the {{ enterpriseConfig.name }} InVision account has disabled sharing to users outside of the account.</p>
+</div>
+<span
+class="footer actions"
+ng-class="{ 'new-tour-point': ! conversation.id && conversation.isTourPoint }">
+<button
+class="button"
+type="button"
+tabindex="202"
+delay="1400"
+ng-click="submitForm()"
+inv-success-button
+after-success="closeCommentFormOnSave(conversation.id)"
+>
+Send
+</button>
+</span> <!-- footer -->
+<div class="sketchList" ng-show="tempSketches.length > 0">
+<div ng-repeat="sketch in tempSketches" class="sketch new-sketch">
+<a ng-click=" startSketchViewer( sketch , true, conversation ) ">
+<strong>Your sketch is attached.</strong> View?
+<span class="delete" inv-tooltip="delete" ng-click=" deleteTempSketch(sketch.tempID) ">
+&times;
+</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div
+class="add-sketch"
+ng-show="tempSketches.length == 0 && ( ! conversation.isTourPoint || ! comments.length == 0 )">
+<a ng-click=" startSketchBuilder() "></a>
+</div>
+</div> <!-- post-comment -->
+</div> <!-- post -->
+</div>
+<!-- Delete confirmation for entire conversation. -->
+<div inv-fade-show="isDeleting" class="delete-confirmation delete-conversation">
+<p>Delete this <strong>entire</strong> conversation?</p>
+<div class="action">
+<a ng-click="deleteConversation( conversation )" class="btn btn-small flat dkgray">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation()" class="cancel">Cancel</a>
+</div>
+</div>
+<div inv-fade-show="isIdentifying" class="overlay identification">
+<div class="form">
+<h2>Please Identify Yourself</h2>
+<p>In order to participate, we need to know who you are.</p>
+<div ng-show="errorMessage" class="alert alert-error">
+<strong>Oops</strong>: {{ errorMessage }}
+</div>
+<div class="field">
+<label>Name:</label>
+<input type="text" ng-model="identity.name" inv-autofocus tabindex="301" placeholder="Name" />
+</div>
+<div class="field">
+<label>Email:</label>
+<input type="text" ng-model="identity.email" tabindex="302" placeholder="Email Address" />
+</div>
+<div class="actions">
+<button 
+class="button"
+type="button"
+ng-click="submitForm()"
+tabindex="303"
+>
+Post Comment
+</button>
+<button
+class="close"
+type="button"
+ng-click="closeConversation()"
+>
+Cancel
+</button>
+</div>
+</div> <!-- form -->
+</div> <!-- identification -->
+<!-- This adds bottom-margin to the form so the page will scroll adequately. -->
+<div class="bottom-buffer">
+<br />
+</div>
+</div> <!-- comment-thread-container -->
+</form>
+</script><script type="text/ng-template" id="/assets/apps/share/views/comments/markers.htm"><div
+ng-controller="comments.MarkersController"
+inv-comments-markers
+class="markers" >
+<div
+ng-class="{ mobile: project.isMobile }"
+class="viewport {{ viewport.alignment }}"
+ng-style="{
+width: ( viewport.width + 'px' ),
+height: ( viewport.height + 'px' )
+}"
+ng-mouseenter=" setIsHoveringViewport(true) "
+ng-mouseleave=" setIsHoveringViewport(false) ">
+<!-- Output the conversation markers. -->
+<a
+ng-repeat="conversation in conversations track by conversation.id"
+ng-href="#/screens/{{ screenID }}/comments/{{ conversation.id }}"
+class="marker"
+ng-class="{
+complete: conversation.isComplete,
+active: ( conversation == selectedConversation ),
+comment: ! conversation.isForDevelopment && ! conversation.isTourPoint && ! conversation.isPrivate,
+'dev-note': conversation.isForDevelopment,
+'tour-point': conversation.isTourPoint,
+'private-comment': conversation.isPrivate && ! conversation.isForDevelopment,
+read: ! conversation.isUnread && userAuthenticated,
+'move-disabled': !isUserACollaborator,
+'no-label': conversation.label == ''
+}"
+ng-style="{
+left: ( conversation.x * screen.displayScale + 'px' ),
+top: ( conversation.y * screen.displayScale + 'px' )
+}"
+unselectable="on"
+ng-mouseenter=" setIsHoveringHotspot(true) "
+ng-mouseleave=" setIsHoveringHotspot(false) "
+ng-show=" ( conversation.isShown || project.isSnap ) || (conversation.id == selectedConversation.id )">
+{{ conversation.label }}
+<span ng-if=" conversation.isComplete " class="complete-icon"></span>
+</a>
+<!-- Show the new conversation marker, if necessary. -->
+<a
+ng-show="newConversation"
+ng-href="#/screens/{{ screenID }}/comments"
+class="marker new-marker active"
+ng-class="{
+comment: ! newConversation.isForDevelopment && ! newConversation.isTourPoint && ! newConversation.isPrivate,
+'dev-note': newConversation.isForDevelopment,
+'tour-point': newConversation.isTourPoint,
+'private-comment': newConversation.isPrivate && ! newConversation.isForDevelopment,
+'no-label': newConversation.label == ''
+}"
+ng-style="{
+left: ( newConversation.x * screen.displayScale + 'px' ),
+top: ( newConversation.y * screen.displayScale + 'px' )
+}"
+unselectable="on"
+ng-mouseenter=" setIsHoveringHotspot(true) "
+ng-mouseleave=" setIsHoveringHotspot(false) ">
+{{ newConversation.label }}
+</a>
+<!-- Only include the form if a conversation has been selected. -->
+<div
+class="comments-original" 
+ng-if="( ( selectedConversation || newConversation ) && !settings.features.mentions )"
+ng-include=" '/assets/apps/share/views/comments/form.htm' "></div><!-- delete this div after mentions are enabled across all users -->
+<div
+class="comments-mentions" 
+ng-if="( ( selectedConversation || newConversation ) && settings.features.mentions )"
+ng-include=" '/assets/apps/share/views/comments/form-mentions.htm' "></div>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/comments/form.htm"><form
+ng-controller="comments.FormController"
+ng-submit="submitForm()"
+inv-comments-form-key-combos
+inv-comments-form
+class="conversation comment-thread-container emoji-root"
+ng-class="{ teaser: ( isShowingTeaser && !tempSketches.length ) }"
+ng-style="{
+left: ( conversation.x * screen.displayScale + 'px' ),
+top: ( ( conversation.y * screen.displayScale ) + 9 + 'px' )
+}">
+<div class="emoji-placeholder"></div>
+<div
+class="comment-thread"
+ng-class="{
+comment: ! conversation.isForDevelopment && ! conversation.isTourPoint && ! conversation.isPrivate,
+'dev-note': conversation.isForDevelopment,
+'tour-point': conversation.isTourPoint,
+'private-comment': conversation.isPrivate
+}">
+<header>
+<span ng-hide=" conversation.id == 0 ">
+<input
+id="conversationIsComplete"
+type="checkbox"
+ng-model="conversation.isComplete"
+ng-change="updateConversationStatus( conversation )"
+ng-disabled="( conversation.id == 0 )"
+inv-uniform
+/>
+</span>
+<label for="conversationIsComplete" class="mark-complete"
+ng-hide=" conversation.id == 0 "
+ng-class="{ disabled: ( conversation.id == 0 ) }" ng-switch="conversation.isComplete">
+<span ng-switch-when="true">Marked resolved</span>
+<span ng-switch-when="false">Mark as resolved</span>
+</label>
+<div
+class="dropdown type-dropdown"
+ng-class="{ saved: !! conversation.id }"
+ng-show="showInternalOptions && !project.isSnap">
+<a data-toggle="dropdown" class="dropdown-toggle">
+<span class="text pink" ng-show="!conversation.isForDevelopment && !conversation.isPrivate && !conversation.isTourPoint">
+<span class="dot"></span>
+<span ng-hide=" !! conversation.id ">Leave a Comment</span>
+</span>
+<span class="text grey" ng-show="!conversation.isForDevelopment && conversation.isPrivate">
+<span class="dot"></span>
+<span ng-hide=" !! conversation.id ">Private Comment</span>
+</span>
+<span class="text purple" ng-show="conversation.isForDevelopment">
+<span class="dot"></span>
+<span ng-hide=" !! conversation.id ">Dev Note</span>
+</span>
+<span class="text tour-point" ng-show="conversation.isTourPoint">
+<span class="dot"></span>
+<span ng-hide=" !! conversation.id ">Tour Point</span>
+</span>
+<span class="drop"></span>
+</a>
+<ul class="dropdown-menu">
+<li>
+<a ng-click="setTypeAsComment()" class="pink">
+<span class="dot"></span> Comment
+</a>
+</li>
+<li ng-hide="!user.canViewPrivateComments">
+<a ng-click="setTypeAsPrivateComment()" class="grey">
+<span class="dot"></span> Private Comment
+</a>
+</li>
+<li ng-hide="!user.canViewPrivateComments">
+<a ng-click="setTypeAsDevNote()" class="purple">
+<span class="dot"></span> Dev Note
+</a>
+</li>
+<li>
+<a ng-click="setTypeAsTourPoint()" class="tour-point">
+<span class="dot"></span> Tour Point
+</a>
+</li>
+</ul>
+</div>
+<span
+class="non-collaborator-label"
+ng-show=" !showInternalOptions && !project.isSnap"
+ng-class="{ saved: !! conversation.id }"
+>
+<span class="dot"></span> Leave a Comment
+</span>
+<button
+class="close"
+type="button"
+ng-click="closeConversation()">
+&times;
+</button>
+</header>
+<!-- BEGIN: Comments. -->
+<div
+ng-repeat="comment in comments"
+ng-init=" showDeleteCommentConfirmation = false ; "
+class="comment-item comment"
+ng-class="{
+first: $first,
+unread: comment.isUnread,
+collapsed: comment.isCollapsed,
+'first-collapsed': comment.isFirstCollapsed,
+last: $last
+}"
+inv-fade-show="!comment.isCollapsed || ( comment.isCollapsed && comment.isFirstCollapsed )">
+<!-- Special section for collapsed area -->
+<div ng-if=" comment.isCollapsed " class="collapsed-comments">
+<span ng-click="expandComments( )">View All {{ comments.length }} Comments</span>
+</div>
+<div class="m-avatar" ng-class="{ 'system-avatar': comment.userHasSystemAvatar }">
+<span class="rendering">{{ comment.userInitials }}</span>
+<img ng-src="/avatars/{{ comment.userAvatarID }}" class="rendering" />
+<!-- Status -->
+<span
+class="online-status"
+ng-class="{ online: ( comment.userOnlineStatus == 'Online' ), away: ( comment.userOnlineStatus == 'Away' ) }">
+{{ comment.userOnlineStatus }}
+</span>
+</div>
+<div class="post-content post-emojis">
+<h2 ng-hide="$first && conversation.isTourPoint">
+<span>{{ comment.userName }}</span>
+<span class="created-at">{{ comment.dateLabel }}</span>
+</h2>
+<div class="post-options"
+ng-show=" !comment.isEditing "
+ng-if=" !comment.isPlaceholder ">
+<ul class="tools">
+<li
+class="view-history hidden"
+ng-show="( ! comment.isEditing && ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<a>View History</a>
+</li>
+<li
+class="edit-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="editComment( comment )"
+inv-tooltip="Edit comment">
+Edit
+</a>
+</li>
+<li
+class="delete-comment hidden"
+ng-show=" comment.isOwnedByUser || project.isOwnedByUser ">
+<a
+ng-click="showDeleteConfirmation( comment, $first )"
+inv-tooltip="Delete comment">
+Delete
+</a>
+</li>
+</ul>
+<div inv-history-overlay class="history-overlay" ng-if="( ( comment.screenImageVersion != screen.imageVersion ) && comment.imageUrl )">
+<div class="history-overlay-image-container">
+<img 	inv-screen-version-image-scaler
+ng-src="{{ comment.imageUrl }}"
+ng-style="{
+top: - ( ( conversation.y * screen.displayScale ) - 130 ) + 'px',
+left: - ( ( conversation.x * screen.displayScale ) - 270 )+ 'px'
+}" />
+</div>
+<div class="hover-buffer"></div>
+</div> <!-- history-overlay -->
+</div> <!-- post-options -->
+<a class="thumbs-up"
+ng-if=" !comment.isPlaceholder "
+ng-show=" canLike "
+ng-hide=" $first && conversation.isTourPoint "
+ng-class="{ 'liked': comment.numberOfLikes, 'by-user': comment.hasUserLiked  }"
+ng-click="toggleLike( comment )"
+inv-tooltip="{{ comment.likedByList }}">
+<i class="icon thumbs up"></i>
+{{comment.numberOfLikes}}
+</a>
+<div
+ng-show="! comment.isEditing"
+ng-bind-html="comment.html"
+class="post-comment">
+</div>
+<div ng-if="comment.isEditing" class="editing-mode">
+<div
+inv-emoji-typeahead
+model="comment.comment"
+target="comment">
+</div>
+<textarea
+inv-autofocus
+inv-autosize
+ng-model="comment.comment"
+tabindex="101"
+class="existing"></textarea>
+</div>
+<div
+class="sketchList"
+ng-show="comment.sketches.length > 0 && ( ! $first || ! conversation.isTourPoint )">
+<div
+ng-repeat="sketch in comment.sketches"
+class="sketch">
+<a
+class="text"
+ng-click=" startSketchViewer( sketch , false, conversation ) "
+ng-class="{
+editing: comment.isEditing
+}">
+<strong>{{ comment.userFirstName }}&rsquo;s attached a sketch.</strong> View?
+<span inv-tooltip="delete" class="delete" ng-show="comment.isEditing" ng-click=" deleteSketch( sketch.id )">x</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div class="editing-mode" ng-show="comment.isEditing">
+<div inv-emoji-add target="comment"></div>
+</div>
+<div class="post-buttons" ng-show="( comment.isEditing )">
+<button
+type="button"
+class="save"
+ng-show="comment.isEditing"
+tabindex="102"
+ng-click="saveComment( comment, false )">
+Save
+</button>
+<button
+type="button"
+class="cancel"
+ng-show="comment.isEditing"
+tabindex="103"
+ng-click="cancelCommentEdit( comment )">
+Cancel
+</button>
+</div>
+</div> <!-- post-content -->
+<!-- Delete confirmation for single comment. -->
+<div inv-fade-show="comment.isDeleting" class="delete-confirmation">
+<p>Delete this comment?</p>
+<div class="action">
+<a ng-click="deleteComment( comment )" class="confirm">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation( comment )" class="cancel">Cancel</a>
+</div>
+</div>
+<div
+ng-if=" $first && conversation.isTourPoint && comments.length > 1 "
+class="reply-counter"
+ng-pluralize
+count=" comments.length - 1 "
+when="{
+'0': '0 Replies',
+'one': '1 Reply',
+'other': '{} Replies'
+}">
+</div>
+</div>
+<!-- END: Comments. -->
+<div class="comment-item post-new-comment">
+<div class="post post-emojis">
+<div
+class="post-comment"
+ng-class="{ 'has-sketch': tempSketches.length > 0 }">
+<div
+inv-emoji-typeahead
+model="newComment">
+</div>
+<textarea
+inv-autosize
+inv-autofocus
+name="post-comment"
+ng-model="newComment"
+tabindex="201"
+placeholder="Leave a comment..."
+ng-keypress="showCommentInput()"
+ng-class="{
+'has-sketch': tempSketches.length > 0,
+open: isCommentInputVisible
+}"></textarea>
+<div class="sketchList" ng-show="tempSketches.length > 0">
+<div ng-repeat="sketch in tempSketches" class="sketch">
+<a ng-click=" startSketchViewer( sketch , true, conversation ) ">
+<strong>Your sketch is attached.</strong> View?
+<span class="delete" inv-tooltip="delete" ng-click=" deleteTempSketch(sketch.tempID) ">
+&times;
+</span>
+</a>
+</div> <!-- sketch -->
+</div> <!-- sketchList -->
+<div
+class="add-sketch"
+ng-show="tempSketches.length == 0 && ( ! conversation.isTourPoint || ! comments.length == 0 )">
+<a ng-click=" startSketchBuilder() "></a>
+</div>
+<div inv-emoji-add></div>
+</div> <!-- post-comment -->
+</div> <!-- post -->
+</div>
+<div ng-show="isCommentInputVisible">
+<div class="comment-item notify" ng-show=" (! conversation.isTourPoint || comments.length > 0) && ! isNewTourPoint ">
+<div class="notify-top">
+<p>
+<span
+inv-notify-text
+names="{{ getUsersToBeNotified() }}"
+others="{{ getNotifyCount() }}"></span>
+<a ng-click="toggleUserList()" class="toggle">
+<span ng-hide="isShowingUserList">(change)</span>
+<span ng-show="isShowingUserList">(hide)</span>
+</a>
+</p>
+</div> <!-- notify-top -->
+<div
+class="notify_drop"
+ng-class="{
+closed: ! isShowingUserList,
+open: isShowingUserList
+}">
+<div
+ng-show="isShowingUserList"
+class="user-lists"
+ng-class="{ 'members-only': isInternalConversation }">
+<div class="notify_all" ng-show="members.length || affiliates.length">
+<div class="notify_all_team">
+<div class="checker">
+<span
+ng-class="{
+'checked': getNotifyCount() > 0,
+'partial': getNotifyCount() > 0 && getNotifyCount() < ( members.length + affiliates.length )
+}">
+<input
+type="checkbox"
+ng-click="toggleNotifyOption()" />
+</span>
+</div> <!-- checker -->
+<div class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle">
+{{notifyOptionSelected}}
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<li><a ng-click="selectAll()">All</a></li>
+<li><a ng-click="selectCollaborators()">Collaborators</a></li>
+</ul>
+</div> <!-- dropdown -->
+</div> <!-- notify_all_team -->
+</div> <!-- notify_all -->
+<ul class="notify_person_list">
+<li ng-repeat="user in members">
+<div ng-hide="conversation.isPrivate && !user.canViewPrivateComments">
+<label ng-class="{ 'checked': user.isSelected }" ng-show="user.id != shareUser.id">
+<input type="checkbox" ng-model="user.isSelected" ng-click="toggleUserSelection( user )" inv-uniform>
+<strong>{{ user.name }}</strong>
+<span ng-show="isTeamMember">(Collaborator)</span>
+</label>
+</div>
+</li>
+</ul>
+<ul class="notify_person_list" ng-show="isStakeholdersShowing()">
+<li ng-repeat="user in affiliates">
+<label ng-class="{ 'checked': user.isSelected }"  ng-show="user.id != shareUser.id">
+<input type="checkbox" ng-model="user.isSelected" ng-click="toggleUserSelection( user )" inv-uniform>
+<strong>{{ user.name }}</strong>
+<a class="remove-stakeholder" ng-show="isTeamMember" inv-confirm-popover="Remove forever?" on-confirm="removeStakeholder( user )"><img src="assets/apps/common/img/delete.png" /></a>
+</label>
+</li>
+</ul>
+</div>
+<div ng-show="( isShowingUserList && ! isInternalConversation )">
+<span ng-hide="showNotifyOthers == true" class="add-emails">
+<a ng-click="showNotifyOthers = true">
+Add others to the conversation&hellip;
+</a>
+</span>
+<div class="add-emails-input" ng-show="showNotifyOthers">
+<input type="text"
+ng-model="emailAddresses"
+id="notify_others"
+placeholder="Add others via email (separated by comma)">
+</div>
+</div>
+</div> <!-- notify_drop -->
+</div> <!-- comment-item notify -->
+<div class="error-message" ng-show="hasUnauthorizedEmail">
+<p>The administrator of the {{ enterpriseConfig.name }} InVision account has disabled sharing to users outside of the account.</p>
+</div>
+<div
+class="comment-item footer submit"
+ng-class="{ 'new-tour-point': ! conversation.id && conversation.isTourPoint }">
+<button
+class="button"
+tabindex="202"
+type="submit"
+inv-success-button
+after-success="closeCommentFormOnSave(conversation.id)"
+delay="1400">Post Comment</button>
+<button class="close" type="button" ng-click="closeConversation()">cancel</button>
+</div> <!-- footer -->
+</div> <!-- isCommentInputVisible toggle -->
+<!-- Delete confirmation for entire conversation. -->
+<div inv-fade-show="isDeleting" class="delete-confirmation delete-conversation">
+<p>Delete this <strong>entire</strong> conversation?</p>
+<div class="action">
+<a ng-click="deleteConversation( conversation )" class="btn btn-small flat dkgray">Yes, Delete</a>
+<a ng-click="hideDeleteConfirmation()" class="cancel">Cancel</a>
+</div>
+</div>
+<div inv-fade-show="isIdentifying" class="overlay identification">
+<div class="form">
+<h2>Please Identify Yourself</h2>
+<p>In order to participate, we need to know who you are.</p>
+<div ng-show="errorMessage" class="alert alert-error">
+<strong>Oops</strong>: {{ errorMessage }}
+</div>
+<div class="field">
+<label>Name:</label>
+<input type="text" ng-model="identity.name" inv-autofocus tabindex="301" placeholder="Name" />
+</div>
+<div class="field">
+<label>Email:</label>
+<input type="text" ng-model="identity.email" tabindex="302" placeholder="Email Address" />
+</div>
+<div class="actions">
+<button class="button" type="submit" tabindex="303">Post Comment</button>
+<button class="close" type="button" ng-click="closeConversation()">cancel</button>
+</div>
+</div> <!-- form -->
+</div> <!-- identification -->
+<!-- This adds bototm-margin to the form so the page will scroll adequately. -->
+<div class="bottom-buffer">
+<br />
+</div>
+</div> <!-- comment-thread-container -->
+</form></script><script type="text/ng-template" id="/assets/apps/share/views/comments/comments.htm"><div
+ng-controller="comments.CommentsController" 
+inv-comments-key-combos 
+class="m-comments" 
+ng-class="{ mobile: project.isMobile }">
+<!-- Context. -->
+<div ng-if=" (isLiveShare || !project.isSnap)" ng-include=" '/assets/apps/share/views/comments/context.htm' "></div>
+<!-- Catchup Toolbar. -->
+<div ng-if=" (isLiveShare || !project.isSnap)" ng-include=" '/assets/apps/share/views/comments/catchup-toolbar.htm' "></div>
+<!-- Markers. -->
+<div ng-include=" '/assets/apps/share/views/comments/markers.htm' "></div>
+<!--  View controlled by switch to overlay everything -->
+<div inv-share-sketch-builder
+ng-if=" isShowingSketchBuilder " >
+</div>
+<!-- Sketch viewer modal-->
+<div inv-share-sketch-viewer
+ng-if=" isShowingSketchViewer ">
+</div>
+<div id="cursor-tooltip"
+inv-comments-cursor-tooltip
+ng-show="isHoveringViewport && !( isHoveringHotspot || isShowingConversationMenu)"
+>
+Click to leave a comment
+</div>
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/partials/preload.htm">	<!--
+BEGIN: HACKY CSS PRELOAD. 
+Until we have better sprite technology, let's at least pre-load the images this way so that 
+the parallel loading of Screen images is less likely to conflict. 
+-->
+<div style="height: 1px ; left: -100px ; overflow: hidden ; position: absolute ; top: -100px ; width: 1px ;">
+<img src="assets/apps/share/img/app-switch.png" />
+<img src="assets/apps/share/img/browse-background.png" />
+<img src="assets/apps/share/img/browse-pillnav-icons.png" />
+<img src="assets/apps/share/img/browse-pillnav.png" />
+<img src="assets/apps/share/img/close3.png" />
+<img src="assets/apps/share/img/comments-context-tab.png" />
+<img src="assets/apps/share/img/comments-vrule.png" />
+<img src="assets/apps/share/img/grey-screen-divider.png" />
+<img src="assets/apps/share/img/loader-sprite.png?v=06112014" />
+<img src="assets/apps/share/img/marker.png?v=2" />
+<img src="assets/apps/share/img/screens-search.png" />
+<img src="assets/apps/share/img/scrollbar-mid.png" />
+<img src="assets/apps/share/img/sketch-viewer-close.png" />
+<img src="assets/apps/share/img/sketch_tools.png" />
+<img src="assets/apps/share/img/share-lite-sprites.png" />
+<img src="assets/apps/share/img/share-lite-sprites@2x.png" />
+<img src="assets/apps/share/img/share-loading-sprites.png" />
+<img src="assets/apps/share/img/share-loading-sprites@2x.png" />
+</div>
+<!-- END: Hacky CSS Preload. </script><script type="text/ng-template" id="/assets/apps/share/views/presentations/slides.htm"><div ng-switch on="subview">
+<div ng-switch-when="comments">
+<div 
+id="comments_bar" 
+ng-controller="toolbar.ToolbarController"
+ng-hide="isShowingSketchBuilder">
+<h2>Click anywhere on the image to leave a comment</h2>
+<p class="close"><a ng-click="switchToPreview()">Close</a></p>
+</div> <!-- share_bar -->
+</div>
+</div>
+<!-- desktop projects -->
+<div 	
+ng-if=" !project.isMobile || subview == 'comments' "
+inv-screens
+ng-controller="screens.ScreensController"
+class="m-screens desktop"
+ng-style="bodyStyle"
+ng-class="{ 
+isScaledCommentMode: project.isMobile,
+'comment-mode': subview == 'comments'
+}">
+<div 
+class="screen visible {{ screen.alignment }}"
+ng-style="{ 
+width: ( (screen.width * screen.displayScale) + 'px' ), 
+height: ( (screen.height * screen.displayScale) + 'px' ) 
+}">
+<img 
+ng-src="{{ getScreenUrl() }}"
+ng-style="{ 
+width: ( (screen.width * screen.displayScale) + 'px' ), 
+height: ( (screen.height * screen.displayScale) + 'px' ) 
+}" />
+</div>
+</div>
+<!-- mobile projects-->
+<div 	
+ng-if=" project.isMobile && subview == 'preview' "
+class="m-screens" >
+<div class="screen mobile visible {{ screen.alignment }}">
+<img ng-src="{{ getScreenUrl() }}" />
+</div> <!-- screen mobile visible -->
+</div> <!-- m-screens -->
+</script><script type="text/ng-template" id="/assets/apps/share/views/powered-by/powered-by.htm"><!-- Hide this object for all Shopify Enterprise project shares. ( companyID 71 ).  Everyone else should see it. -->
+<div ng-hide="project.companyID == 71">
+<a
+ng-if=" !project.isMobile || share.isEmbed "
+class="powered-by"
+href="http://www.invisionapp.com/?utm_medium=virality&utm_source=Share%20CTA"
+target="_blank">
+<img src="assets/apps/share/img/logo-icon.png" />
+</a>
+<a
+ng-if="project.isMobile && !share.isEmbed"
+class="mobile-powered-by"
+href="http://www.invisionapp.com/?utm_medium=virality&utm_source=Share%20CTA"
+target="_blank">
+made with InVision
+</a>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/powered-by/powered-by-mobile.htm"><div
+ng-controller="poweredBy.poweredByController"
+ng-mouseenter="announceActivityChange(true)"
+ng-mouseleave="announceActivityChange(false)">
+<!-- BEGIN: Powered By Tag -->
+<a
+class="mobile-powered-by"
+ng-class="{ 'active': isActive }"
+href="http://www.invisionapp.com/?utm_medium=virality&utm_source=Share%20CTA"
+target="_blank">
+made with InVision
+</a>
+<!-- END: Powered By Tag -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/notification-bar/notification-bar.htm"><div ng-if="!isLiveShare && !share.isEmbed"
+ng-controller="notificationsBar.notificationsBarController"
+ng-class="{ in: isChangingNotifications, out: !isChangingNotifications, reverse: !isChangingNotifications }"
+class="email-notifications">
+<img src="assets/apps/share/img/email@2x.png" class="ico-email" width="20" height="12p" />
+<p ng-show="!wantsEmailNotifications">You have been <strong>unsubscribed</strong> from email notifications for this project. <a href="" ng-click="reSubscribeUser();">Undo</a></p>
+<p ng-show="wantsEmailNotifications">You have <strong>resubscribed</strong> to all email notifications for this project.</p>
+<img src="assets/apps/share/img/close2@2x.png" class="ico-close" width="10" height="10" ng-click="closeEmailNotification();" />
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/modal/error.htm"><div ng-controller="modal.ErrorController" inv-modal class="modal errorModal">
+<div class="modal-header">
+<a ng-click="closeModalWindow()" class="close" aria-hidden="true">&times;</a>
+<h3>
+Oops!
+</h3>
+</div>
+<div class="modal-body">
+{{ errorMessage }}
+</div>
+<div class="modal-footer">
+<a ng-click="closeModalWindow()" class="btn btn-primary">Close</a>
+</div>
+</div></script><script type="text/ng-template" id="/assets/apps/share/views/modal/share-tour.htm"><div ng-controller="modal.ShareTour" inv-modal class="modal animate" id="shareTour">
+<div class="modal-body">
+<div class="video-container"
+inv-video-overlay
+id="video_share_tour"
+player-id="video_share_tour"
+video-id="n7kgs97nk4"
+video-width="701"
+video-height="394">
+<div class="play-overlay">
+<a href=""></a>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<h2>Get Started in 30 Seconds</h2>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/share/views/toolbar/toolbar.htm">
+<div
+ng-controller="toolbar.ToolbarController"
+ng-show="( includeBrowseTool || includeCommentsTool )"
+ng-mouseenter="updateIsUserOverToolbar( true )"
+ng-mouseleave="updateIsUserOverToolbar( false )"
+ng-hide="!isLiveShare && project.isSnap || share.isEmbed"
+ng-class="{ 'tour-is-running': isShareTourRunning }"
+class="m-toolbar">
+<!-- iPhone projects (on share, not liveshare) only -->
+<div
+id="shareSMS"
+inv-fade-show="isShowingSmsForm"
+ng-if=" deviceTemplate.deviceType == 'phone' && ! isLiveShare && !! shareUrl "
+ng-class="{
+'no-comments': ! includeCommentsTool,
+'no-browse': ! includeBrowseTool
+}">
+<div class="smsForm" inv-fade-show="isShowingSmsForm" duration="slow" >
+<a ng-click="toggleSmsShareForm()" class="closeButton"><img src="assets/apps/share/img/close4.png" alt="Close" /></a>
+<h2>Install "{{ project.name }}" on your phone</h2>
+<p>Visit <a ng-href="{{ shareUrl }}">{{shareUrl}}</a> on your phone or SMS the link to your number:</p>
+<input 	inv-i8n-telephone
+type="text"
+class="phoneNumber"
+country-code="share.countryCode"
+ng-class="{ messageSent: sms.messageSent }"
+ui-keypress="{13:'sendShareSms()'}"
+name="phoneNumber"
+placeholder="Enter mobile number"
+ng-model="sms.phoneNumber">
+<button ng-click="sendShareSms()">
+Send
+</button>
+<div class="message">
+{{sms.message}}
+</div>
+</div>
+</div>
+<!-- BEGIN: Toolbar. -->
+<div
+inv-toolbar
+class="toolbar"
+ng-class="{
+active: isActive,
+'highlight-tour': !hasSeenTour
+}">
+<!-- helper -->
+<div
+class="begin-share-tour"
+ng-show=" shouldShowHelpQuestionMark() "
+>
+<!-- bouncy tooltip -->
+<div 
+class="comment-tip-wrapper"
+ng-show="shouldShowBounceToolTip()">
+<span
+inv-bouncy-tooltip
+msg="Learn how to explore this design"
+callback="hasSeenCommentTooltip()"></span>
+</div> <!-- comment-tip-wrapper -->
+<div class="helper" ng-class="{'hasSeenCommentsTooltip': hasSeenCommentsTooltip}" ng-click="showShareTour()">?</div>
+</div> <!-- begin-share-tour -->
+<div class="tools">
+<div ng-if=" ! isLiveShare && deviceTemplate.deviceType == 'phone' && !! shareUrl " class="tool share-sms-tool">
+<a ng-click="toggleSmsShareForm()"></a>
+</div>
+<div
+ng-show="includeBrowseTool"
+ng-class="{ active: tourSubView == 'thumbnails' }"
+class="tool browse-toggle-tool">
+<a ng-click="toggleBrowse()" ng-class="{ on: isBrowseOpen }">Browse</a>
+</div>
+<div
+ng-show="includeCommentsTool"
+ng-class="{
+active: tourSubView == 'comments',
+'no-browse': !includeBrowseTool && ( deviceTemplate.deviceType != 'phone' || !! isLiveshare )
+}"
+class="tool comments-toggle-tool">
+<div class="clickable"></div>
+<span class="comments" ng-class="{ new: unreadCommentCount, old: ( commentCount && ! unreadCommentCount ) }">
+<span class="unread">{{ unreadCommentCount }}</span>
+<span class="total">{{ commentCount }}</span>
+</span>
+<span class="description">
+Comments
+</span>
+<div ng-model="isShowingComments" inv-toggle></div>
+</div>
+</div>
+</div>
+<!-- END: Toolbar. -->
+</div>
+</script><script type="text/ng-template" id="/assets/apps/common/views/directives/mobile-transition-layer.htm"><div class="inner">
+<div class="inner2">
+<div
+id="current-screen"
+class="current-screen"
+ng-if="currentScreen"
+ng-style="{
+'background-color': getBackgroundColor(currentScreen)
+}">
+<img
+ng-src="{{ getImageUrl( currentScreen.imageUrl ) }}"
+height="{{ Math.round(currentScreen.height * (currentScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(currentScreen.width * (currentScreen.displayScale || screen.displayScale)) }}" />
+<div
+class="fixed-header"
+ng-style="{
+height: (currentScreen.fixedHeaderHeight * (currentScreen.displayScale || screen.displayScale)),
+marginTop: pushDownFixedHeader
+}">
+<img
+ng-src="{{ getImageUrl( currentScreen.imageUrl ) }}"
+height="{{ Math.round(currentScreen.height * (currentScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(currentScreen.width * (currentScreen.displayScale || screen.displayScale)) }}" />
+</div>
+<div
+class="fixed-footer"
+ng-style="{
+height: (currentScreen.fixedFooterHeight * (currentScreen.displayScale || screen.displayScale))
+}">
+<img
+ng-src="{{ getImageUrl( currentScreen.imageUrl ) }}"
+height="{{ Math.round(currentScreen.height * (currentScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(currentScreen.width * (currentScreen.displayScale || screen.displayScale)) }}" />
+</div>
+</div>
+<div
+id="next-screen"
+ng-if="targetScreen"
+class="target-screen"
+ng-style="{
+'background-color': getBackgroundColor(targetScreen)
+}">
+<img
+ng-src="{{ getImageUrl( targetScreen.imageUrl ) }}"
+height="{{ Math.round(targetScreen.height * (targetScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(targetScreen.width * (targetScreen.displayScale || screen.displayScale)) }}" />
+<div
+class="fixed-header"
+ng-style="{
+height: (targetScreen.fixedHeaderHeight * (targetScreen.displayScale || screen.displayScale)),
+marginTop: pushDownFixedHeader
+}">
+<img
+ng-src="{{ getImageUrl( targetScreen.imageUrl ) }}"
+height="{{ Math.round(targetScreen.height * (targetScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(targetScreen.width * (targetScreen.displayScale || screen.displayScale)) }}" />
+</div>
+<div
+class="fixed-footer"
+ng-style="{
+height: (targetScreen.fixedFooterHeight * (targetScreen.displayScale || screen.displayScale))
+}">
+<img
+ng-src="{{ getImageUrl( targetScreen.imageUrl ) }}"
+height="{{ Math.round(targetScreen.height * (targetScreen.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(targetScreen.width * (targetScreen.displayScale || screen.displayScale)) }}" />
+</div>
+</div>
+<div
+id="transition-picture-{{picture.id}}"
+ng-repeat="picture in transitionScreens track by picture.id"
+ng-style="{
+'background-color': getBackgroundColor(picture)
+}"
+ng-class="{
+'current-screen': picture.id == transitionScreen.id,
+'target-screen': picture.id == transitionData.targetScreen.id
+}"
+class="transition-picture">
+<img
+ng-src="{{ getImageUrl( picture.imageUrl ) }}"
+height="{{ Math.round(picture.height * (picture.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(picture.width * (picture.displayScale || screen.displayScale)) }}" />
+<div
+class="fixed-header"
+ng-style="{
+height: (picture.fixedHeaderHeight * (picture.displayScale || screen.displayScale)),
+marginTop: pushDownFixedHeader
+}">
+<img
+ng-src="{{ getImageUrl( picture.imageUrl ) }}"
+height="{{ Math.round(picture.height * (picture.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(picture.width * (picture.displayScale || screen.displayScale)) }}" />
+</div> <!-- fixed-header -->
+<div
+class="fixed-footer"
+ng-style="{
+height: (picture.fixedFooterHeight * (picture.displayScale || screen.displayScale))
+}">
+<img
+ng-src="{{ getImageUrl( picture.imageUrl ) }}"
+height="{{ Math.round(picture.height * (picture.displayScale || screen.displayScale)) }}"
+width="{{ Math.round(picture.width * (picture.displayScale || screen.displayScale)) }}" />
+</div> <!-- fixed-footer -->
+</div> <!-- current-picture -->
+</div><!-- inner2 -->
+</div> <!-- inner -->
+</script><script type="text/ng-template" id="/assets/apps/common/views/directives/emoji-add.htm"><div class="emoji-wrapper">
+<div
+class="emoji-popover"
+ng-class="{ 'hover-emoji': hoverEmoji, 'top': isTop, 'left': alignLeft }"
+ng-show="isOpen">
+<div class="emoji-header">
+<h5 class="description">
+Type ':' and TAB to autocomplete or choose an emoji below:
+</h5>
+<h5 class="details">
+<span class="emoji-icon-big emojis-{{ hoverEmoji }}-x2">
+</span>
+<span class="emoji-name">
+:{{ hoverEmoji }}:
+</span>
+</h5>
+</div>
+<ul class="tabs">
+<li
+ng-repeat="tab in tabs" ng-click="setTab( $index )"
+ng-class="{ 'active': activeTab.idx == $index }">
+<span class="emoji-icon-tab emojis-{{ tab }}">
+{{ tab }}
+</span>
+</li>
+</ul>
+<div class="emojis">
+<span
+ng-repeat="emoji in emojis[ activeTab.tab ]"
+class="emoji-icon emojis-{{ emoji }}"
+data-emoji="{{ emoji }}">
+{{ emoji }}
+</span>
+</div>
+</div>
+<div class="add-emoji">
+<a ng-click="togglePopover( $event )"></a>
+</div>
+</div>
+</script><script type="text/ng-template" id="/assets/apps/common/views/directives/emoji-typeahead.htm"><div class="emoji-typeahead-wrapper">
+<div 
+ng-show="items.length > 0"
+ng-class="{'emoji-typeahead-big' : items.length > 15, 'emoji-typeahead-narrow' : isNarrow }"
+class="emoji-typeahead">
+<nav>
+<span class="typeahead-command">
+<span class="strong">tab</span> or <span class="emojis-navigation emojis-navigation-arrows"></span> to navigate
+</span>
+<span class="typeahead-command">
+<span class="emojis-navigation emojis-navigation-return"></span> to select
+</span>
+<span class="typeahead-command">
+<span class="strong">esc</span> to dismiss
+</span>
+</nav>
+<ul class="emoji-list">
+<li
+ng-class="{ 'active': current == $index }" 
+ng-repeat="item in items"
+data-idx="{{ $index }}"
+>
+<i class="emoji-icon-typeahead emojis-{{ item.label }}">
+</i>
+:{{ item.label }}:
+</li>
+</ul>
+</div>
+</div></script> 
+
+
+</body>
+</html>
