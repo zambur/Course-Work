@@ -1,6 +1,6 @@
 # Project 1
 
-Final prototype can be found at: [Student Center](https://invis.io/VU66VKA3B)
+Final prototype can be found at: [Student Center](https://invis.io/6Q67O875D)
 
 In the first project we were tasked with finding a web-service that need significant development and improvement. My group decided to work on the UW Madison Student Center where all UW students have to go to sign up for classes, check their schedule, pay tuition, as well as many other things. Our main goal was to improve the search functionality so it is easier for students to find classes they need, as of now they have to use 2 separate services to find classes and display their schedule. As you can see in our high fidelity prototype we have combined all of these into one easy to use experience. 
 
@@ -42,5 +42,5 @@ Describing our design and demonstrating the key tasks our design supports.
 
 ### High Fidelity Prototype
 
-[Student Center](https://invis.io/VU66VKA3B) Our final prototype of the Student Center.   
+[Student Center](https://invis.io/6Q67O875D) Our final prototype of the Student Center.   
 Photoshop documents and screenshots are located in [/Photoshop](https://github.com/zambur/Course-Work/tree/master/CS570/P1/Photoshop)
