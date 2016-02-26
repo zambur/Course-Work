@@ -32,7 +32,7 @@ Complete transcripts of all three of our contextual inquiries we did as well as 
 
 Affinity Diagrams are generated during group session, organizes ideas into a hierarchy. Each observation/idea/note are hierarchically organized into themes, based on the focus of the project, built bottom-up. Put up notes from brainstorm, one by one.
 
-### Progress Book
+### Process Book
 
 This describes our complete research process from ideation to evaluation. Include descriptions of every step of our research process and supporting figures such as models from our user research, pictures from our user evaluations, and sketches and screenshots from your prototypes. This is a general wrap-up of all our work during this project.
 
