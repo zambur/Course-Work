@@ -1,0 +1,11 @@
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\bin\Debug\Lab1.exe.config
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\bin\Debug\Lab1.exe
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\bin\Debug\Lab1.pdb
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\bin\Debug\Lab1.xml
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.vbprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.Resources.resources
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.vbproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.exe
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.xml
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.pdb
+\\mac\home\documents\visual studio 2015\Projects\Lab1\Lab1\obj\Debug\Lab1.Lab1.resources
