@@ -1,0 +1,11 @@
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\bin\Debug\Exercise5.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.vbprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.Exercise5.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.vbproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\bin\Debug\Exercise5.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\bin\Debug\Exercise5.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\bin\Debug\Exercise5.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab1\Exercise5\obj\Debug\Exercise5.pdb
