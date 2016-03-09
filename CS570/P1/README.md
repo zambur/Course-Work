@@ -1,5 +1,7 @@
 # Project 1
 
+![Demo](http://i.imgur.com/yGs8xQe.gif)
+
 Final prototype can be found at: [Student Center](https://invis.io/6Q67O875D)
 
 In the first project we were tasked with finding a web-service that need significant development and improvement. My group decided to work on the UW Madison Student Center where all UW students have to go to sign up for classes, check their schedule, pay tuition, as well as many other things. Our main goal was to improve the search functionality so it is easier for students to find classes they need, as of now they have to use 2 separate services to find classes and display their schedule. As you can see in our high fidelity prototype we have combined all of these into one easy to use experience. 
