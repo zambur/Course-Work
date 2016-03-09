@@ -1,6 +1,6 @@
 # Project 1
 
-![Demo](http://i.imgur.com/yGs8xQe.gif)
+![Demo](http://i.imgur.com/qMSxA1Q.gif)
 
 Final prototype can be found at: [Student Center](https://invis.io/6Q67O875D)
 
