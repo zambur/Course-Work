@@ -9,9 +9,9 @@ The interim presentations will involve giving a general idea of our problem spac
 A four-page report in PDF format of your process describing the decisions you made, your findings, your reflections.
 
 ### Diary Study
-**Data**
+**Data**   
 For roughly a week we tracked the spending habbits of 3 people, to find out common places they would need to split bills, what mobile services their friends use, how they are currently splitting bills and what frustrations they have with it. Then neatly laid out all our findings into an excel document.   
-**Snapshot**
+**Snapshot**   
 A screen shot of what the user filled out after purchasing items with other people. We decided to use a google form to try and make it as easy and painless as possible for them.
 
 ### Work Models
