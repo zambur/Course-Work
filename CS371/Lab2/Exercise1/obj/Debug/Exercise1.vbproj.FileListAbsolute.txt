@@ -1,0 +1,12 @@
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\bin\Debug\Exercise1.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.vbprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.vbproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\bin\Debug\Exercise1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\bin\Debug\Exercise1.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\bin\Debug\Exercise1.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.ItemView.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise1\obj\Debug\Exercise1.Customer.resources
