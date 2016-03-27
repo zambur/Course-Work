@@ -1,0 +1,13 @@
+\\mac\home\documents\visual studio 2015\Projects\Lab2\Exercise2\bin\Debug\Exercise2.exe.config
+\\mac\home\documents\visual studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.vbprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.Resources.resources
+\\mac\home\documents\visual studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.vbproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\bin\Debug\Exercise2.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\bin\Debug\Exercise2.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\bin\Debug\Exercise2.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.ArrivalFlights.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.ControlPanel.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.DepartingFlights.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\Lab2\Exercise2\obj\Debug\Exercise2.pdb
