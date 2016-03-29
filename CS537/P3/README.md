@@ -1,1 +1,12 @@
 # Program 3
+
+
+
+###Files
+
+***kernel*** - kernel and booting   
+***user*** - user level programs   
+***include*** - shared header files for both kernel and user   
+***tools*** - tools to run on the host machine   
+***README*** - project description   
+***Makefile*** - build instructions for GNU make   
