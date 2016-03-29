@@ -3,7 +3,7 @@
 # make how to compile and link the program. This makefile also tells make how
 # to run miscellaneous commands when explicitly asked (for example, to run an
 # emulator after building the correct filesystem image, or to remove certain
-# files as a clean-up operation).
+# files as a clean-up operation)
 #
 # http://www.gnu.org/software/make/manual/
 
