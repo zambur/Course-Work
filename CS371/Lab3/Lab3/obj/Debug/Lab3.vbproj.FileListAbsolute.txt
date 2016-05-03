@@ -1,0 +1,9 @@
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\bin\Debug\Lab3.exe.config
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\bin\Debug\Lab3.exe
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\bin\Debug\Lab3.pdb
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\bin\Debug\Lab3.xml
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\obj\Debug\Lab3.Resources.resources
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\obj\Debug\Lab3.vbproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\obj\Debug\Lab3.exe
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\obj\Debug\Lab3.xml
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Lab3\obj\Debug\Lab3.pdb
