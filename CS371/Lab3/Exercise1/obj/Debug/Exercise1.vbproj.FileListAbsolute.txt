@@ -1,0 +1,13 @@
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\bin\Debug\Exercise1.exe.config
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\bin\Debug\Exercise1.exe
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\bin\Debug\Exercise1.pdb
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\bin\Debug\Exercise1.xml
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.Resources.resources
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.vbproj.GenerateResource.Cache
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.exe
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.xml
+\\mac\home\documents\visual studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.Customers.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.Employees.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.Suppliers.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise1\obj\Debug\Exercise1.Items.resources
