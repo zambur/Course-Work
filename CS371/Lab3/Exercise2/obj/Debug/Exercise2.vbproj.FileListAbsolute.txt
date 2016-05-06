@@ -1,0 +1,10 @@
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\bin\Debug\Exercise2.exe.config
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\bin\Debug\Exercise2.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\bin\Debug\Exercise2.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\bin\Debug\Exercise2.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.ATM.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.vbproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise2\obj\Debug\Exercise2.pdb
