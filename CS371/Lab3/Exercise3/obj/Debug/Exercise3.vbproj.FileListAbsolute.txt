@@ -1,0 +1,14 @@
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\bin\Debug\Exercise3.exe.config
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\bin\Debug\Exercise3.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\bin\Debug\Exercise3.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\bin\Debug\Exercise3.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.vbproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.Search.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.Unit.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.Tenant.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.Details.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Lab3\Exercise3\obj\Debug\Exercise3.MenuForm.resources
