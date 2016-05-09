@@ -1,0 +1,14 @@
+\\mac\home\documents\visual studio 2013\Projects\Pilot\Pilot\bin\Debug\Pilot.exe.config
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\bin\Debug\Pilot.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\bin\Debug\Pilot.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\bin\Debug\Pilot.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.MDIform.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.Service.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.vbproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.exe
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.xml
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.pdb
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.CRMform.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.Help.resources
+\\Mac\Home\Documents\Visual Studio 2013\Projects\Pilot\Pilot\obj\Debug\Pilot.About.resources
