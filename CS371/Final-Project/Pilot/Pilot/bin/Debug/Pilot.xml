@@ -1,0 +1,176 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Pilot
+</name>
+</assembly>
+<members>
+<member name="P:Pilot.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Axle">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Blueprint">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Catalytic_Converter">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Dashboard_Dials">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Door_Fixture">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Electrical_Connector">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Engine">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Engine_CPU">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Engine_Timing_Module">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Flange">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Ford">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Headlights_Control_Chip">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Interlocking_Assembly">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Motor">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Radiator">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Temperature_Control">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Pilot.My.Resources.Resources.Wheel_Rim">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:Pilot.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:Pilot.AvailableParts.PartsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderCostDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderStatusDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.PartsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderCostRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderStatusRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:Pilot.AvailableParts.PartsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderCostRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Pilot.AvailableParts.OrderStatusRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:Pilot.AvailableParts">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.PartsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.OrderCostTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.OrderStatusTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:Pilot.AvailablePartsTableAdapters.TableAdapterManager.UpdateUpdatedRows(Pilot.AvailableParts,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:Pilot.AvailablePartsTableAdapters.TableAdapterManager.UpdateInsertedRows(Pilot.AvailableParts,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:Pilot.AvailablePartsTableAdapters.TableAdapterManager.UpdateDeletedRows(Pilot.AvailableParts,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:Pilot.AvailablePartsTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:Pilot.AvailablePartsTableAdapters.TableAdapterManager.UpdateAll(Pilot.AvailableParts)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:Pilot.AvailablePartsTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+</members>
+</doc>
