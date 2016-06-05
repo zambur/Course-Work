@@ -9,3 +9,12 @@ The other system call join waits for a child thread that shares the address spac
 My thread library is built on top of this, and just has a simple thread_create(void (*start_routine)(void*), void *arg) routine. This routine calls malloc() to create a new user stack, uses clone() to create the child thread and get it running. A thread_join() call is also used, which calls the underlying join() system call, frees the user stack, and then returns.
 
 My thread library also has a simple spin lock. There is a type lock_t that one uses to declare a lock, and two routines lock_acquire(lock_t *) and lock_release(lock_t *) , which acquire and release the lock. The spin lock uses x86 atomic exchange to built the spin lock. One last routine, lock_init(lock_t *) , is used to initialize the lock as need be.
+
+###Files
+
+***kernel*** - kernel and booting   
+***user*** - user level programs   
+***include*** - shared header files for both kernel and user   
+***tools*** - tools to run on the host machine   
+***README*** - project description   
+***Makefile*** - build instructions for GNU make   
