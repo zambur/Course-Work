@@ -1,6 +1,6 @@
 # Project 2
 
-![Demo](http://i.imgur.com/Sxq62cz.gif)
+![Demo](https://github.com/zambur/Course-Work/blob/master/CS570/P2/SyNERGY-Walkthrough.gif)
 
 
 Final prototype can be found at: [SyNERGY 2.0 Mobile App](https://invis.io/5N6UXQTFZ#/149314525_Menu)
